@@ -1,0 +1,54 @@
+# HELP age_total Time since this client instance was created (microseconds)
+# TYPE age_total counter
+age_total{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP metadata_cache_cnt Number of topics in the metadata cache.
+# TYPE metadata_cache_cnt gauge
+metadata_cache_cnt{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 1
+# HELP msg_cnt Current number of messages in producer queues
+# TYPE msg_cnt gauge
+msg_cnt{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 22710
+# HELP msg_max_total Threshold: maximum number of messages allowed allowed on the producer queues
+# TYPE msg_max_total counter
+msg_max_total{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 500000
+# HELP msg_size Current total size of messages in producer queues
+# TYPE msg_size gauge
+msg_size{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 704010
+# HELP msg_size_max_total Threshold: maximum total size of messages allowed on the producer queues
+# TYPE msg_size_max_total counter
+msg_size_max_total{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 1.073741824e+09
+# HELP replyq Number of ops (callbacks, events, etc) waiting in queue for application to serve with Poll()
+# TYPE replyq gauge
+replyq{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP rx_bytes_total Total number of bytes received from Kafka brokers
+# TYPE rx_bytes_total counter
+rx_bytes_total{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 31084
+# HELP rx_total Total number of responses received from Kafka brokers
+# TYPE rx_total counter
+rx_total{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 631
+# HELP rxmsg_bytes_total Total number of message bytes (including framing) received from Kafka brokers
+# TYPE rxmsg_bytes_total counter
+rxmsg_bytes_total{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP rxmsgs_total Total number of messages consumed, not including ignored messages (due to offset, etc), from Kafka brokers.
+# TYPE rxmsgs_total counter
+rxmsgs_total{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP simple_cnt Internal tracking of legacy vs new consumer API state
+# TYPE simple_cnt gauge
+simple_cnt{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP time_total Wall clock time in seconds since the epoch
+# TYPE time_total counter
+time_total{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 1.527060869e+09
+# HELP ts_total internal monotonic clock (microseconds)
+# TYPE ts_total counter
+ts_total{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 5.016483227792e+12
+# HELP tx_bytes_total Total number of bytes transmitted to Kafka brokers
+# TYPE tx_bytes_total counter
+tx_bytes_total{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 1.68584479e+08
+# HELP tx_total Total number of requests sent to Kafka brokers
+# TYPE tx_total counter
+tx_total{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 631
+# HELP txmsg_bytes_total Total number of message bytes (including framing, such as per-Message framing and MessageSet/batch framing) transmitted to Kafka brokers
+# TYPE txmsg_bytes_total counter
+txmsg_bytes_total{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 1.33323343e+08
+# HELP txmsgs_total Total number of messages transmitted (produced) to Kafka brokers
+# TYPE txmsgs_total counter
+txmsgs_total{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 4.300753e+06

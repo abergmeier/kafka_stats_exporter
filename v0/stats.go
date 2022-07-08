@@ -4,14 +4,14 @@ import (
 	"encoding/json"
 	"reflect"
 
-	"github.com/abergmeier/kafka_stats_exporter/pkg/kafka/typed"
-	"github.com/abergmeier/kafka_stats_exporter/pkg/prometheus/auto"
+	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/kafka/typed"
+	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/prometheus/gen"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
 type Exporter struct {
 	stats         typed.Stats
-	cachedUpdater map[reflect.Type]interface{}
+	cachedUpdater map[reflect.Type]gen.UpdatingCollector
 }
 
 func (e *Exporter) UpdateWithStats(stats *kafka.Stats) error {
@@ -28,11 +28,10 @@ func (e *Exporter) UpdateWithStatString(stats string) error {
 	t := reflect.TypeOf(e.stats)
 	upd, ok := e.cachedUpdater[t]
 	if !ok {
-		upd = auto.BuildFromTags(e.stats)
+		upd = gen.NewRecursiveUpdaterFromTags(e.stats)
 		e.cachedUpdater[t] = upd
 	}
 
-	// TODO: Call update
-
+	upd.Update(e.stats)
 	return nil
 }
