@@ -1,0 +1,10 @@
+{
+    "name": "rdkafka#producer-1",
+    "brokers": {
+      "localhost:9092/2": {
+        "name": "localhost:9092/2",
+        "rxbytes": 15708
+      }
+    },
+    "rx_bytes": 31084
+  }

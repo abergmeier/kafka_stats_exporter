@@ -7,6 +7,7 @@ import (
 	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/kafka/typed"
 	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/prometheus/gen"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
+	"github.com/prometheus/client_golang/prometheus"
 )
 
 type Exporter struct {
@@ -32,6 +33,6 @@ func (e *Exporter) UpdateWithStatString(stats string) error {
 		e.cachedUpdater[t] = upd
 	}
 
-	upd.Update(e.stats)
+	upd.Update(e.stats, prometheus.Labels{})
 	return nil
 }

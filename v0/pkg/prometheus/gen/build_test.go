@@ -7,30 +7,66 @@ import (
 	"testing"
 
 	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/kafka/typed"
+	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/testutil"
 )
 
 var (
-	stats             = typed.Stats{}
-	expectedCollected io.Reader
+	simple                       = simpleStats{}
+	full                         = typed.Stats{}
+	expectedFull, expectedSimple io.Reader
 )
 
-func init() {
-	f, err := os.Open("testdata/example.json")
+type simpleStats struct {
+	Name    string                                 `json:"name"     kpromlbl:"name"` //Handle instance name
+	RxBytes int                                    `json:"rx_bytes" kpromcol:"CounterVec,Total number of bytes received from Kafka brokers"`
+	Brokers map[typed.BrokerName]simpleBrokerStats `json:"brokers"  kprommap:"brokers"`
+}
+
+type simpleBrokerStats struct {
+	Name    string `json:"name"    kpromlbl:"name"` //Broker hostname, port and broker id
+	Rxbytes int    `json:"rxbytes" kpromcol:"CounterVec,Total number of bytes received"`
+}
+
+func init_full() {
+	f, err := os.Open("testdata/full.json")
 	if err != nil {
 		panic(err)
 	}
 	defer f.Close()
 	dec := json.NewDecoder(f)
-	err = dec.Decode(&stats)
+	err = dec.Decode(&full)
 	if err != nil {
 		panic(err)
 	}
 
-	expectedCollected, err = os.Open("testdata/updated.txt")
+	expectedFull, err = os.Open("testdata/full_expected.txt")
 	if err != nil {
 		panic(err)
 	}
+}
+
+func init_simple() {
+	f, err := os.Open("testdata/simple.json")
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+	dec := json.NewDecoder(f)
+	err = dec.Decode(&simple)
+	if err != nil {
+		panic(err)
+	}
+
+	expectedSimple, err = os.Open("testdata/simple_expected.txt")
+	if err != nil {
+		panic(err)
+	}
+}
+
+func init() {
+	init_simple()
+	init_full()
 }
 
 func TestNewRecursiveUpdaterFromTags(t *testing.T) {
@@ -38,10 +74,19 @@ func TestNewRecursiveUpdaterFromTags(t *testing.T) {
 	_ = NewRecursiveUpdaterFromTags(&typed.Stats{})
 }
 
+func TestSimple(t *testing.T) {
+	upd := NewRecursiveUpdaterFromTags(simpleStats{})
+	upd.Update(&simple, prometheus.Labels{})
+	err := testutil.CollectAndCompare(upd, expectedSimple)
+	if err != nil {
+		t.Fatal("CollectAndCompare failed:", err)
+	}
+}
+
 func TestUpdate(t *testing.T) {
-	upd := NewRecursiveUpdaterFromTags(&stats)
-	upd.Update(stats)
-	err := testutil.CollectAndCompare(upd, expectedCollected)
+	upd := NewRecursiveUpdaterFromTags(&full)
+	upd.Update(full, prometheus.Labels{})
+	err := testutil.CollectAndCompare(upd, expectedFull)
 	if err != nil {
 		t.Fatal("CollectAndCompare failed:", err)
 	}

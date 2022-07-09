@@ -6,11 +6,20 @@ import (
 	"reflect"
 	"strings"
 
+	"github.com/abergmeier/kafka_stats_exporter/internal/assert"
 	"github.com/iancoleman/strcase"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-type generated struct {
+type dynamicMap struct {
+	indexInStruct int
+	structParent  string
+	fieldName     string // Field names get saved in snake cased prometheus format
+
+	mapped map[reflect.Value]*UpdateCollectors
+}
+
+type generatedUpdator struct {
 	collector prometheus.Collector
 	index     int
 	update    func(last, current int64, ls prometheus.Labels) int64
@@ -18,43 +27,121 @@ type generated struct {
 }
 
 type UpdateCollectors struct {
-	lg         LabelReflector
-	collectors []generated
-	children   []UpdatingCollector
+	rlr              *recursiveLabelReflector
+	staticCollectors []generatedUpdator
+	children         []UpdatingCollector
+	maps             []dynamicMap
+	t                reflect.Type
 }
 
-func (u *UpdateCollectors) Update(v interface{}) {
-	labels := u.lg(v)
+func (u *UpdateCollectors) Update(v interface{}, labels prometheus.Labels) {
+	for k, v := range u.rlr.Lr.LabelsForValue(v) {
+		labels[k] = v
+	}
+
+	u.update(v, labels)
+}
+
+func (u *UpdateCollectors) update(v interface{}, labels prometheus.Labels) {
 	rv := reflect.ValueOf(v)
-	for _, c := range u.collectors {
+	switch rv.Kind() {
+	case reflect.Pointer:
+		rv = rv.Elem()
+	}
+	assert.AssertType(rv, u.t)
+	for _, c := range u.staticCollectors {
 		fv := rv.FieldByIndex([]int{c.index})
 		if !fv.CanInt() {
-			fmt.Printf("Field %s %d\n", fv, c.index)
 			panic("Only in update implemented yet")
 		}
 		current := fv.Int()
 		c.update(c.last, current, labels)
 		c.last = current
 	}
+	// Up until here we could do statically initialize
+	// all data. Here map keys can change while runtime
+	// thus we need to handle
+	for _, m := range u.maps {
+		fv := rv.FieldByIndex([]int{m.indexInStruct})
+		assertMap(fv)
+		ln := LabelNames{}
+		for k := range labels {
+			ln = append(ln, k)
+		}
+		updateMapped(&m, u.rlr.Fields[m.indexInStruct], fv, ln)
+		for mk, mc := range m.mapped {
+			// While we only support strings and ints we usually use an alias to
+			// make semantics clear. Thus we need to convert from string or int
+			// to alias here.
+			aliased := mk.Convert(fv.Type().Key())
+			mv := fv.MapIndex(aliased)
+			mc.rlr = u.rlr.Fields[m.indexInStruct]
+			mc.Update(mv.Interface(), labels)
+		}
+	}
+}
+
+func updateMapped(d *dynamicMap, rlr *recursiveLabelReflector, fv reflect.Value, labelNames LabelNames) {
+
+	var keysToDelete map[reflect.Value]struct{}
+	for k := range d.mapped {
+		keysToDelete[k] = struct{}{}
+	}
+
+	iter := fv.MapRange()
+	for iter.Next() {
+		key := iter.Key()
+		_, ok := d.mapped[key]
+		if ok {
+			// We can reuse map entry
+			delete(keysToDelete, key)
+			continue
+		}
+		vt := iter.Value().Type()
+		cu := &UpdateCollectors{}
+		if d.structParent == "" {
+			cu.fill(vt, rlr, d.fieldName+"_"+key.String()+"_", labelNames)
+		} else {
+			cu.fill(vt, rlr, d.structParent+"_"+d.fieldName+"_"+key.String()+"_", labelNames)
+		}
+		// We need new map entry
+		d.mapped[key] = cu
+	}
+	// Delete superfluous keys
+	for k := range keysToDelete {
+		delete(d.mapped, k)
+	}
 }
 
 func (u *UpdateCollectors) Describe(c chan<- *prometheus.Desc) {
-	for _, g := range u.collectors {
+	for _, g := range u.staticCollectors {
 		g.collector.Describe(c)
 	}
 
 	for _, child := range u.children {
 		child.Describe(c)
 	}
+
+	for _, m := range u.maps {
+		for _, collectors := range m.mapped {
+			collectors.Describe(c)
+		}
+	}
 }
 
 func (u *UpdateCollectors) Collect(c chan<- prometheus.Metric) {
-	for _, g := range u.collectors {
+	for _, g := range u.staticCollectors {
 		g.collector.Collect(c)
 	}
 
 	for _, child := range u.children {
 		child.Collect(c)
+	}
+
+	for _, m := range u.maps {
+		for _, collectors := range m.mapped {
+			collectors.Collect(c)
+		}
 	}
 }
 
@@ -65,29 +152,52 @@ func NewRecursiveUpdaterFromTags(tagged interface{}) UpdatingCollector {
 		t = t.Elem()
 	}
 
+	rlr := recursiveLabelReflector{}
+	fillLabels(t, &rlr, "", nil)
+
 	u := &UpdateCollectors{}
-	u.fill(t, "")
+	u.fill(t, &rlr, "", LabelNames{})
 	return u
 }
 
-func (u *UpdateCollectors) fill(t reflect.Type, parent string) {
-	var labelNames LabelNames
-	u.lg, labelNames = MakeLabelReflector(t, parent)
+func (u *UpdateCollectors) fill(t reflect.Type, rlr *recursiveLabelReflector, parent string, labelNames LabelNames) {
+	u.t = t
+	u.rlr = rlr
+	if u.t != u.rlr.T {
+		panic(fmt.Sprintf("LabelReflector type `%s` does not match collected type `%s`", u.rlr.T, u.t))
+	}
 
 	fields := reflect.VisibleFields(t)
 	for i, f := range fields {
 		tag := f.Tag.Get("kpromcol")
 		if tag != "" {
-			u.collectors = append(u.collectors, *makeGenerated(i, tag, f, parent, labelNames))
+			ln := labelNames
+			ln = append(ln, rlr.Ln...)
+			u.staticCollectors = append(u.staticCollectors, *makeGenerated(i, tag, f, parent, ln))
+			continue
+		}
+		tag = f.Tag.Get("kprommap")
+		if tag != "" {
+			switch f.Type.Kind() {
+			case reflect.Map:
+			default:
+				panic("Only supported on maps")
+			}
+			u.maps = append(u.maps, dynamicMap{
+				indexInStruct: i,
+				structParent:  parent,
+				mapped:        map[reflect.Value]*UpdateCollectors{},
+				fieldName:     tag,
+			})
 			continue
 		}
 		tag = f.Tag.Get("kprompnt")
 		if tag != "" {
 			cu := &UpdateCollectors{}
 			if parent == "" {
-				cu.fill(f.Type, tag+"_")
+				cu.fill(f.Type, rlr.Fields[i], tag+"_", labelNames)
 			} else {
-				cu.fill(f.Type, parent+"_"+tag+"_")
+				cu.fill(f.Type, rlr.Fields[i], parent+"_"+tag+"_", labelNames)
 			}
 			u.children = append(u.children, cu)
 			continue
@@ -95,7 +205,7 @@ func (u *UpdateCollectors) fill(t reflect.Type, parent string) {
 	}
 }
 
-func makeGenerated(i int, tag string, f reflect.StructField, parent string, labelNames LabelNames) *generated {
+func makeGenerated(i int, tag string, f reflect.StructField, parent string, labelNames LabelNames) *generatedUpdator {
 	prom := strings.SplitN(tag, ",", 2)
 	help, err := url.QueryUnescape(prom[1])
 	if err != nil {
@@ -107,7 +217,7 @@ func makeGenerated(i int, tag string, f reflect.StructField, parent string, labe
 			Name: parent + strcase.ToSnake(f.Name) + "_total",
 			Help: help,
 		}, labelNames)
-		return &generated{
+		return &generatedUpdator{
 			collector: counterVec,
 			index:     i,
 			update: func(last, current int64, ls prometheus.Labels) int64 {
@@ -119,7 +229,7 @@ func makeGenerated(i int, tag string, f reflect.StructField, parent string, labe
 			Name: parent + strcase.ToSnake(f.Name),
 			Help: help,
 		}, labelNames)
-		return &generated{
+		return &generatedUpdator{
 			collector: gaugeVec,
 			index:     i,
 			update: func(last, current int64, ls prometheus.Labels) int64 {

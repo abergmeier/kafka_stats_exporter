@@ -24,8 +24,8 @@ type Stats struct {
 	RxmsgBytes       int                        `json:"rxmsg_bytes"        kpromcol:"CounterVec,Total number of message bytes (including framing) received from Kafka brokers"`
 	SimpleCnt        int                        `json:"simple_cnt"         kpromcol:"GaugeVec,Internal tracking of legacy vs new consumer API state"`
 	MetadataCacheCnt int                        `json:"metadata_cache_cnt" kpromcol:"GaugeVec,Number of topics in the metadata cache."`
-	Brokers          map[BrokerName]BrokerStats `json:"brokers"`
-	Topics           map[TopicName]TopicStats   `json:"topics"`
+	Brokers          map[BrokerName]BrokerStats `json:"brokers"            kprommap:"brokers"`
+	Topics           map[TopicName]TopicStats   `json:"topics"             kprommap:"topics"`
 	Cgrp             CgrpStats                  `json:"cgrp"               kprompnt:"cgrp"` //Consumer group metrics.
 	Eos              EosStats                   `json:"eos"                kprompnt:"eos"`  //EOS / Idempotent producer state and metrics.
 }
@@ -44,11 +44,11 @@ type CgrpStats struct {
 
 // BrokerStats is per broker statistics.
 type BrokerStats struct {
-	Name           string                             `json:"name"             kpromlbl:"broker_name"`   //Broker hostname, port and broker id
-	Nodeid         int                                `json:"nodeid"           kpromlbl:"broker_nodeid"` //Broker id (-1 for bootstraps)
-	Nodename       string                             `json:"nodename"         kpromlbl:"nodename"`      //Broker hostname
-	Source         string                             `json:"source"           kpromlbl:"broker_source"` //Broker source (learned, configured, internal, logical)
-	State          string                             `json:"state"            kpromlbl:"broker_state"`  //Broker state (INIT, DOWN, CONNECT, AUTH, APIVERSION_QUERY, AUTH_HANDSHAKE, UP, UPDATE)
+	Name           string                             `json:"name"             kpromlbl:"name"`     //Broker hostname, port and broker id
+	Nodeid         int                                `json:"nodeid"           kpromlbl:"nodeid"`   //Broker id (-1 for bootstraps)
+	Nodename       string                             `json:"nodename"         kpromlbl:"nodename"` //Broker hostname
+	Source         string                             `json:"source"           kpromlbl:"source"`   //Broker source (learned, configured, internal, logical)
+	State          string                             `json:"state"            kpromlbl:"state"`    //Broker state (INIT, DOWN, CONNECT, AUTH, APIVERSION_QUERY, AUTH_HANDSHAKE, UP, UPDATE)
 	Stateage       int                                `json:"stateage"         kpromcol:"GaugeVec,Time since last broker state change (microseconds)"`
 	OutbufCnt      int                                `json:"outbuf_cnt"       kpromcol:"GaugeVec,Number of requests awaiting transmission to broker"`
 	OutbufMsgCnt   int                                `json:"outbuf_msg_cnt"   kpromcol:"GaugeVec,Number of messages awaiting transmission to broker"`
@@ -84,9 +84,9 @@ type EosStats struct {
 	IdempStateage int    `json:"idemp_stateage"  kpromcol:"GaugeVec,Time elapsed since last idemp_state change (milliseconds)."`
 	TxnState      string `json:"txn_state"       kpromlbl:"txn_state"` //Current transactional producer state.
 	TxnStateage   int    `json:"txn_stateage"    kpromcol:"GaugeVec,Time elapsed since last txn_state change (milliseconds)."`
-	TxnMayEnq     bool   `json:"txn_may_enq"`    //Transactional state allows enqueuing (producing) new messages.
-	ProducerId    int    `json:"producer_id"`    //The currently assigned Producer ID (or -1).
-	ProducerEpoch int    `json:"producer_epoch"` //The current epoch (or -1).
+	TxnMayEnq     bool   `json:"txn_may_enq"`                            //Transactional state allows enqueuing (producing) new messages.
+	ProducerId    int    `json:"producer_id"     kpromlbl:"producer_id"` //The currently assigned Producer ID (or -1).
+	ProducerEpoch int    `json:"producer_epoch"`                         //The current epoch (or -1).
 	EpochCnt      int    `json:"epoch_cnt"       kpromcol:"GaugeVec,The number of Producer ID assignments since start."`
 }
 
@@ -140,7 +140,7 @@ type TopicStats struct {
 	MetadataAge int                            `json:"metadata_age" kpromcol:"GaugeVec,Age of metadata from broker for this topic (milliseconds)"`
 	Batchsize   WindowStats                    `json:"batchsize"    kprompnt:"batchsize"` //Batch sizes in bytes.
 	Batchcnt    WindowStats                    `json:"batchcnt"     kprompnt:"batchcnt"`  //Batch message counts.
-	Partitions  map[PartitionId]PartitionStats `json:"partitions"`
+	Partitions  map[PartitionId]PartitionStats `json:"partitions"   kprommap:"partitions"`
 }
 type TopparsStats struct {
 	Topic     string `json:"topic"`     //Topic name

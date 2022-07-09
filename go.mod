@@ -4,6 +4,7 @@ go 1.18
 
 require (
 	github.com/confluentinc/confluent-kafka-go v1.9.0
+	github.com/google/go-cmp v0.5.5
 	github.com/iancoleman/strcase v0.2.0
 	github.com/prometheus/client_golang v1.12.2
 )
