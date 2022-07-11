@@ -28,10 +28,10 @@ type Reflector struct {
 	T          reflect.Type
 }
 
-type RecursiveLabelReflector struct {
+type RecursiveReflector struct {
 	Lr     *Reflector
 	Ln     Names
-	Fields map[int]*RecursiveLabelReflector
+	Fields map[int]*RecursiveReflector
 	T      reflect.Type
 }
 

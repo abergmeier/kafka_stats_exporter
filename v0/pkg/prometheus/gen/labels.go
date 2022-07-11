@@ -62,12 +62,12 @@ func MakeLabelReflector(t reflect.Type, parent string, parentLabelNames LabelNam
 	}, labelNames
 }
 
-func fillLabels(t reflect.Type, rlr *label.RecursiveLabelReflector, parent string, parentLabelNames LabelNames) {
+func fillLabels(t reflect.Type, rlr *label.RecursiveReflector, parent string, parentLabelNames LabelNames) {
 
 	rlr.T = t
 
 	rlr.Lr, rlr.Ln = MakeLabelReflector(t, parent, parentLabelNames)
-	rlr.Fields = map[int]*label.RecursiveLabelReflector{}
+	rlr.Fields = map[int]*label.RecursiveReflector{}
 
 	for _, ft := range reflect.VisibleFields(t) {
 		tag := ft.Tag.Get("kprommap")
@@ -77,7 +77,7 @@ func fillLabels(t reflect.Type, rlr *label.RecursiveLabelReflector, parent strin
 			default:
 				panic("Invalid code path")
 			}
-			frlr := label.RecursiveLabelReflector{}
+			frlr := label.RecursiveReflector{}
 			rlr.Fields[ft.Index[0]] = &frlr
 			if parent == "" {
 				fillLabels(ft.Type.Elem(), &frlr, tag, rlr.Ln)
@@ -92,7 +92,7 @@ func fillLabels(t reflect.Type, rlr *label.RecursiveLabelReflector, parent strin
 			default:
 				panic("Invalid code path")
 			}
-			frlr := label.RecursiveLabelReflector{}
+			frlr := label.RecursiveReflector{}
 			rlr.Fields[ft.Index[0]] = &frlr
 			if parent == "" {
 				fillLabels(ft.Type, &frlr, tag, rlr.Ln)

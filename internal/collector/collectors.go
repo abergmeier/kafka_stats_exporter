@@ -9,7 +9,7 @@ import (
 )
 
 type Collectors struct {
-	Rlr              *label.RecursiveLabelReflector
+	Rlr              *label.RecursiveReflector
 	StaticCollectors []GeneratedUpdator
 	children         []prometheus.Collector
 	Maps             []DynamicMap
@@ -48,7 +48,7 @@ func (u *Collectors) Collect(c chan<- prometheus.Metric) {
 	}
 }
 
-func (u *Collectors) Fill(t reflect.Type, rlr *label.RecursiveLabelReflector, parent string, labelNames label.Names) {
+func (u *Collectors) Fill(t reflect.Type, rlr *label.RecursiveReflector, parent string, labelNames label.Names) {
 	u.T = t
 	u.Rlr = rlr
 	if u.T != u.Rlr.T {

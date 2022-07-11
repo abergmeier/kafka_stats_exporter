@@ -8,14 +8,18 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-func NewRecursiveUpdaterFromTags(tagged interface{}) (prometheus.Collector, Updater) {
+// NewRecursiveMetricsFromTags builds Metrics recursively for the type of `tagged`.
+// Uses tags to build Metrics. Does not expose metrics directly.
+// Returns `Collector` for reading created Metrics and `Updater` for
+// updating the Metrics with a Type of `tagged`.
+func NewRecursiveMetricsFromTags(tagged interface{}) (prometheus.Collector, Updater) {
 	t := reflect.TypeOf(tagged)
 	switch t.Kind() {
 	case reflect.Pointer:
 		t = t.Elem()
 	}
 
-	rlr := label.RecursiveLabelReflector{}
+	rlr := label.RecursiveReflector{}
 	fillLabels(t, &rlr, "", nil)
 
 	cs := &collector.Collectors{}
