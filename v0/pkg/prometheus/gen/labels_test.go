@@ -5,6 +5,7 @@ import (
 	"sort"
 	"testing"
 
+	"github.com/abergmeier/kafka_stats_exporter/internal"
 	"github.com/abergmeier/kafka_stats_exporter/internal/label"
 	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/kafka/typed"
 	"github.com/google/go-cmp/cmp"
@@ -138,6 +139,29 @@ var (
 			},
 		},
 	}
+	expectedSimpleLabelReflector = recursiveLabelReflector{
+		T:  reflect.TypeOf(simpleStats{}),
+		Ln: []string{"name"},
+		Lr: &LabelReflector{
+			Generators: []label.KeyValueGenerator{
+				{FieldIndex: 0, FieldType: reflect.TypeOf(""), LabelName: "name", T: reflect.TypeOf(simpleStats{})},
+			},
+			T: reflect.TypeOf(simpleStats{}),
+		},
+		Fields: map[int]*recursiveLabelReflector{
+			2: {
+				T: reflect.TypeOf(simpleBrokerStats{}),
+				Lr: &LabelReflector{
+					T: reflect.TypeOf(simpleBrokerStats{}),
+					Generators: []label.KeyValueGenerator{
+						{FieldIndex: 0, FieldType: reflect.TypeOf(""), LabelName: "brokers_name", T: reflect.TypeOf(simpleBrokerStats{})},
+					},
+				},
+				Ln:     []string{"brokers_name", "name"},
+				Fields: map[int]*recursiveLabelReflector{},
+			},
+		},
+	}
 )
 
 func TestMakeLabelGenerator(t *testing.T) {
@@ -157,22 +181,20 @@ func TestMakeLabelGenerator(t *testing.T) {
 	}
 }
 
-func TestRecursive(t *testing.T) {
+func TestSimpleLabelReflector(t *testing.T) {
 	rlr := recursiveLabelReflector{}
-	fillLabels(reflect.TypeOf(typed.Stats{}), &rlr, "", nil)
-	d := cmp.Diff(rlr, expectedRecursive, cmp.Comparer(compare))
+	fillLabels(reflect.TypeOf(simpleStats{}), &rlr, "", nil)
+	d := cmp.Diff(rlr, expectedSimpleLabelReflector, cmp.Comparer(internal.CompareType))
 	if d != "" {
 		t.Fatal("Diff", d)
 	}
 }
 
-func compare(lhs, rhs reflect.Type) bool {
-
-	if lhs == rhs {
-		return true
+func TestRecursive(t *testing.T) {
+	rlr := recursiveLabelReflector{}
+	fillLabels(reflect.TypeOf(typed.Stats{}), &rlr, "", nil)
+	d := cmp.Diff(rlr, expectedRecursive, cmp.Comparer(internal.CompareType))
+	if d != "" {
+		t.Fatal("Diff", d)
 	}
-	if lhs == nil || rhs == nil {
-		return false
-	}
-	return lhs.String() == rhs.String()
 }
