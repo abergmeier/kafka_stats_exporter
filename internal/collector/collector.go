@@ -11,6 +11,10 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 )
 
+var (
+	metricNameCleaner = strings.NewReplacer(":", "_", "/", "_", "-", "_")
+)
+
 type DynamicMap struct {
 	IndexInStruct int
 	StructParent  string
@@ -32,10 +36,16 @@ func makeGenerated(i int, tag string, f reflect.StructField, parent string, labe
 	if err != nil {
 		panic(err)
 	}
+
 	switch prom[0] {
 	case "CounterVec":
+		// FIXME: This could result in overlapping prefixes
+		namePrefix := metricNameCleaner.Replace(parent)
+		if namePrefix != "" && !strings.HasSuffix(namePrefix, "_") {
+			namePrefix = namePrefix + "_"
+		}
 		counterVec := prometheus.NewCounterVec(prometheus.CounterOpts{
-			Name: parent + strcase.ToSnake(f.Name) + "_total",
+			Name: namePrefix + strcase.ToSnake(f.Name) + "_total",
 			Help: help,
 		}, labelNames)
 		return &GeneratedUpdator{
@@ -46,8 +56,13 @@ func makeGenerated(i int, tag string, f reflect.StructField, parent string, labe
 			},
 		}
 	case "GaugeVec":
+		// FIXME: This could result in overlapping prefixes
+		namePrefix := metricNameCleaner.Replace(parent)
+		if namePrefix != "" && !strings.HasSuffix(namePrefix, "_") {
+			namePrefix = namePrefix + "_"
+		}
 		gaugeVec := prometheus.NewGaugeVec(prometheus.GaugeOpts{
-			Name: parent + strcase.ToSnake(f.Name),
+			Name: namePrefix + strcase.ToSnake(f.Name),
 			Help: help,
 		}, labelNames)
 		return &GeneratedUpdator{

@@ -23,7 +23,7 @@ func NewRecursiveMetricsFromTags(tagged interface{}) (prometheus.Collector, Upda
 	fillLabels(t, &rlr, "", nil)
 
 	cs := &collector.Collectors{}
-	cs.Fill(t, &rlr, "", LabelNames{})
+	cs.Fill(t, &rlr, "")
 	u := &updater{
 		c: cs,
 	}

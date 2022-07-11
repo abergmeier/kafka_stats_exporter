@@ -2,6 +2,7 @@ package label
 
 import (
 	"reflect"
+	"strconv"
 
 	"github.com/abergmeier/kafka_stats_exporter/internal/assert"
 	"github.com/prometheus/client_golang/prometheus"
@@ -67,6 +68,12 @@ func (g *KeyValueGenerator) GenerateFromValue(v interface{}) KeyValue {
 	}
 	fv := rv.FieldByIndex([]int{g.FieldIndex})
 	assert.AssertType(fv, g.FieldType)
+	if fv.CanInt() {
+		return KeyValue{
+			Key:   g.LabelName,
+			Value: strconv.FormatInt(fv.Int(), 10),
+		}
+	}
 	return KeyValue{
 		Key:   g.LabelName,
 		Value: fv.String(),

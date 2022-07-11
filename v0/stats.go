@@ -32,7 +32,7 @@ func (e *Exporter) UpdateWithStatString(stats string) error {
 	t := reflect.TypeOf(e.stats)
 	ce, ok := e.cachedUpdater[t]
 	if !ok {
-		ce.collector, ce.updater = gen.NewRecursiveUpdaterFromTags(e.stats)
+		ce.collector, ce.updater = gen.NewRecursiveMetricsFromTags(e.stats)
 		e.cachedUpdater[t] = ce
 	}
 

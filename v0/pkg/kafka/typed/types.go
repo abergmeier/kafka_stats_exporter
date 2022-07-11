@@ -44,39 +44,40 @@ type CgrpStats struct {
 
 // BrokerStats is per broker statistics.
 type BrokerStats struct {
-	Name           string                             `json:"name"             kpromlbl:"name"`     //Broker hostname, port and broker id
-	Nodeid         int                                `json:"nodeid"           kpromlbl:"nodeid"`   //Broker id (-1 for bootstraps)
-	Nodename       string                             `json:"nodename"         kpromlbl:"nodename"` //Broker hostname
-	Source         string                             `json:"source"           kpromlbl:"source"`   //Broker source (learned, configured, internal, logical)
-	State          string                             `json:"state"            kpromlbl:"state"`    //Broker state (INIT, DOWN, CONNECT, AUTH, APIVERSION_QUERY, AUTH_HANDSHAKE, UP, UPDATE)
-	Stateage       int                                `json:"stateage"         kpromcol:"GaugeVec,Time since last broker state change (microseconds)"`
-	OutbufCnt      int                                `json:"outbuf_cnt"       kpromcol:"GaugeVec,Number of requests awaiting transmission to broker"`
-	OutbufMsgCnt   int                                `json:"outbuf_msg_cnt"   kpromcol:"GaugeVec,Number of messages awaiting transmission to broker"`
-	WaitrespCnt    int                                `json:"waitresp_cnt"     kpromcol:"GaugeVec,Number of requests in-flight to broker awaiting response"`
-	WaitrespMsgCnt int                                `json:"waitresp_msg_cnt" kpromcol:"GaugeVec,Number of messages in-flight to broker awaiting response"`
-	Tx             int                                `json:"tx"               kpromcol:"CounterVec,Total number of requests sent"`
-	Txbytes        int                                `json:"txbytes"          kpromcol:"CounterVec,Total number of bytes sent"`
-	Txerrs         int                                `json:"txerrs"           kpromcol:"CounterVec,Total number of transmission errors"`
-	Txretries      int                                `json:"txretries"        kpromcol:"CounterVec,Total number of request retries"`
-	Txidle         int                                `json:"txidle"           kpromcol:"CounterVec,Microseconds since last socket send (or -1 if no sends yet for current connection)."`
-	ReqTimeouts    int                                `json:"req_timeouts"     kpromcol:"CounterVec,Total number of requests timed out"`
-	Rx             int                                `json:"rx"               kpromcol:"CounterVec,Total number of responses received"`
-	Rxbytes        int                                `json:"rxbytes"          kpromcol:"CounterVec,Total number of bytes received"`
-	Rxerrs         int                                `json:"rxerrs"           kpromcol:"CounterVec,Total number of receive errors"`
-	Rxcorriderrs   int                                `json:"rxcorriderrs"     kpromcol:"CounterVec,Total number of unmatched correlation ids in response (typically for timed out requests)"`
-	Rxpartial      int                                `json:"rxpartial"        kpromcol:"CounterVec,Total number of partial MessageSets received. The broker may return partial responses if the full MessageSet could not fit in the remaining Fetch response size."`
-	Rxidle         int                                `json:"rxidle"           kpromcol:"CounterVec,Microseconds since last socket receive (or -1 if no receives yet for current connection)."`
-	Req            map[RequestName]RequestsSent       `json:"req"` //Value is the number of requests sent.
-	ZbufGrow       int                                `json:"zbuf_grow"        kpromcol:"CounterVec,Total number of decompression buffer size increases"`
-	BufGrow        int                                `json:"buf_grow"         kpromcol:"CounterVec,Total number of buffer size increases (deprecated%2C unused)"`
-	Wakeups        int                                `json:"wakeups"          kpromcol:"CounterVec,Broker thread poll loop wakeups"`
-	Connects       int                                `json:"connects"         kpromcol:"CounterVec,Number of connection attempts%2C including successful and failed%2C and name resolution failures."`
-	Disconnects    int                                `json:"disconnects"      kpromcol:"CounterVec,Number of disconnects (triggered by broker%2C network%2C load-balancer%2C etc.)."`
-	IntLatency     WindowStats                        `json:"int_latency"      kprompnt:"int_latency"`    //Internal producer queue latency in microseconds.
-	OutbufLatency  WindowStats                        `json:"outbuf_latency"   kprompnt:"outbuf_latency"` //Internal request queue latency in microseconds. This is the time between a request is enqueued on the transmit (outbuf) queue and the time the request is written to the TCP socket. Additional buffering and latency may be incurred by the TCP stack and network.
-	Rtt            WindowStats                        `json:"rtt"              kprompnt:"rtt"`            //Broker latency / round-trip time in microseconds.
-	Throttle       WindowStats                        `json:"throttle"         kprompnt:"throttle"`       //Broker throttling time in milliseconds.
-	Toppars        map[TopicAndPartition]TopparsStats `json:"toppars"`                                    //Partitions handled by this broker handle.
+	Name           string                       `json:"name"             kpromlbl:"name"`     //Broker hostname, port and broker id
+	Nodeid         int                          `json:"nodeid"           kpromlbl:"nodeid"`   //Broker id (-1 for bootstraps)
+	Nodename       string                       `json:"nodename"         kpromlbl:"nodename"` //Broker hostname
+	Source         string                       `json:"source"           kpromlbl:"source"`   //Broker source (learned, configured, internal, logical)
+	State          string                       `json:"state"            kpromlbl:"state"`    //Broker state (INIT, DOWN, CONNECT, AUTH, APIVERSION_QUERY, AUTH_HANDSHAKE, UP, UPDATE)
+	Stateage       int                          `json:"stateage"         kpromcol:"GaugeVec,Time since last broker state change (microseconds)"`
+	OutbufCnt      int                          `json:"outbuf_cnt"       kpromcol:"GaugeVec,Number of requests awaiting transmission to broker"`
+	OutbufMsgCnt   int                          `json:"outbuf_msg_cnt"   kpromcol:"GaugeVec,Number of messages awaiting transmission to broker"`
+	WaitrespCnt    int                          `json:"waitresp_cnt"     kpromcol:"GaugeVec,Number of requests in-flight to broker awaiting response"`
+	WaitrespMsgCnt int                          `json:"waitresp_msg_cnt" kpromcol:"GaugeVec,Number of messages in-flight to broker awaiting response"`
+	Tx             int                          `json:"tx"               kpromcol:"CounterVec,Total number of requests sent"`
+	Txbytes        int                          `json:"txbytes"          kpromcol:"CounterVec,Total number of bytes sent"`
+	Txerrs         int                          `json:"txerrs"           kpromcol:"CounterVec,Total number of transmission errors"`
+	Txretries      int                          `json:"txretries"        kpromcol:"CounterVec,Total number of request retries"`
+	Txidle         int                          `json:"txidle"           kpromcol:"CounterVec,Microseconds since last socket send (or -1 if no sends yet for current connection)."`
+	ReqTimeouts    int                          `json:"req_timeouts"     kpromcol:"CounterVec,Total number of requests timed out"`
+	Rx             int                          `json:"rx"               kpromcol:"CounterVec,Total number of responses received"`
+	Rxbytes        int                          `json:"rxbytes"          kpromcol:"CounterVec,Total number of bytes received"`
+	Rxerrs         int                          `json:"rxerrs"           kpromcol:"CounterVec,Total number of receive errors"`
+	Rxcorriderrs   int                          `json:"rxcorriderrs"     kpromcol:"CounterVec,Total number of unmatched correlation ids in response (typically for timed out requests)"`
+	Rxpartial      int                          `json:"rxpartial"        kpromcol:"CounterVec,Total number of partial MessageSets received. The broker may return partial responses if the full MessageSet could not fit in the remaining Fetch response size."`
+	Rxidle         int                          `json:"rxidle"           kpromcol:"CounterVec,Microseconds since last socket receive (or -1 if no receives yet for current connection)."`
+	Req            map[RequestName]RequestsSent `json:"req"` //Value is the number of requests sent.
+	ZbufGrow       int                          `json:"zbuf_grow"        kpromcol:"CounterVec,Total number of decompression buffer size increases"`
+	//Outcommented because deprecation
+	//BufGrow        int                                `json:"buf_grow"         kpromcol:"CounterVec,Total number of buffer size increases (deprecated%2C unused)"`
+	Wakeups       int                                `json:"wakeups"          kpromcol:"CounterVec,Broker thread poll loop wakeups"`
+	Connects      int                                `json:"connects"         kpromcol:"CounterVec,Number of connection attempts%2C including successful and failed%2C and name resolution failures."`
+	Disconnects   int                                `json:"disconnects"      kpromcol:"CounterVec,Number of disconnects (triggered by broker%2C network%2C load-balancer%2C etc.)."`
+	IntLatency    WindowStats                        `json:"int_latency"      kprompnt:"int_latency"`    //Internal producer queue latency in microseconds.
+	OutbufLatency WindowStats                        `json:"outbuf_latency"   kprompnt:"outbuf_latency"` //Internal request queue latency in microseconds. This is the time between a request is enqueued on the transmit (outbuf) queue and the time the request is written to the TCP socket. Additional buffering and latency may be incurred by the TCP stack and network.
+	Rtt           WindowStats                        `json:"rtt"              kprompnt:"rtt"`            //Broker latency / round-trip time in microseconds.
+	Throttle      WindowStats                        `json:"throttle"         kprompnt:"throttle"`       //Broker throttling time in milliseconds.
+	Toppars       map[TopicAndPartition]TopparsStats `json:"toppars"`                                    //Partitions handled by this broker handle.
 }
 
 type EosStats struct {

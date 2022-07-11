@@ -37,6 +37,12 @@ var (
 				Ln: []string{"brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"},
 				T:  reflect.TypeOf(typed.BrokerStats{}),
 				Fields: map[int]*label.RecursiveReflector{
+					27: {
+						Fields: map[int]*label.RecursiveReflector{},
+						Ln:     []string{"brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"},
+						Lr:     &LabelReflector{T: reflect.TypeOf(typed.WindowStats{})},
+						T:      reflect.TypeOf(typed.WindowStats{}),
+					},
 					28: {
 						Fields: map[int]*label.RecursiveReflector{},
 						Ln:     []string{"brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"},
@@ -50,12 +56,6 @@ var (
 						T:      reflect.TypeOf(typed.WindowStats{}),
 					},
 					30: {
-						Fields: map[int]*label.RecursiveReflector{},
-						Ln:     []string{"brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"},
-						Lr:     &LabelReflector{T: reflect.TypeOf(typed.WindowStats{})},
-						T:      reflect.TypeOf(typed.WindowStats{}),
-					},
-					31: {
 						Fields: map[int]*label.RecursiveReflector{},
 						Ln:     []string{"brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"},
 						Lr:     &LabelReflector{T: reflect.TypeOf(typed.WindowStats{})},
@@ -164,7 +164,7 @@ var (
 	}
 )
 
-func TestMakeLabelGenerator(t *testing.T) {
+func TestMakeLabelReflector(t *testing.T) {
 	tpe := reflect.TypeOf(typed.Stats{})
 	lg, lns := MakeLabelReflector(tpe, "", nil)
 	ls := lg.LabelsForValue(typed.Stats{
@@ -181,7 +181,7 @@ func TestMakeLabelGenerator(t *testing.T) {
 	}
 }
 
-func TestSimpleLabelReflector(t *testing.T) {
+func TestLabelReflectorSimple(t *testing.T) {
 	rlr := label.RecursiveReflector{}
 	fillLabels(reflect.TypeOf(simpleStats{}), &rlr, "", nil)
 	d := cmp.Diff(rlr, expectedSimpleLabelReflector, cmp.Comparer(internal.CompareType))
@@ -190,7 +190,7 @@ func TestSimpleLabelReflector(t *testing.T) {
 	}
 }
 
-func TestRecursive(t *testing.T) {
+func TestLabelReflectorFull(t *testing.T) {
 	rlr := label.RecursiveReflector{}
 	fillLabels(reflect.TypeOf(typed.Stats{}), &rlr, "", nil)
 	d := cmp.Diff(rlr, expectedRecursive, cmp.Comparer(internal.CompareType))

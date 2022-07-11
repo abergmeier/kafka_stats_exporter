@@ -1,6 +1,195 @@
 # HELP age_total Time since this client instance was created (microseconds)
 # TYPE age_total counter
 age_total{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9092_2_connects_total Number of connection attempts, including successful and failed, and name resolution failures.
+# TYPE brokers_localhost_9092_2_connects_total counter
+brokers_localhost_9092_2_connects_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9092_2_disconnects_total Number of disconnects (triggered by broker, network, load-balancer, etc.).
+# TYPE brokers_localhost_9092_2_disconnects_total counter
+brokers_localhost_9092_2_disconnects_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9092_2_outbuf_cnt Number of requests awaiting transmission to broker
+# TYPE brokers_localhost_9092_2_outbuf_cnt gauge
+brokers_localhost_9092_2_outbuf_cnt{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9092_2_outbuf_msg_cnt Number of messages awaiting transmission to broker
+# TYPE brokers_localhost_9092_2_outbuf_msg_cnt gauge
+brokers_localhost_9092_2_outbuf_msg_cnt{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9092_2_req_timeouts_total Total number of requests timed out
+# TYPE brokers_localhost_9092_2_req_timeouts_total counter
+brokers_localhost_9092_2_req_timeouts_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9092_2_rx_total Total number of responses received
+# TYPE brokers_localhost_9092_2_rx_total counter
+brokers_localhost_9092_2_rx_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 320
+# HELP brokers_localhost_9092_2_rxbytes_total Total number of bytes received
+# TYPE brokers_localhost_9092_2_rxbytes_total counter
+brokers_localhost_9092_2_rxbytes_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 15708
+# HELP brokers_localhost_9092_2_rxcorriderrs_total Total number of unmatched correlation ids in response (typically for timed out requests)
+# TYPE brokers_localhost_9092_2_rxcorriderrs_total counter
+brokers_localhost_9092_2_rxcorriderrs_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9092_2_rxerrs_total Total number of receive errors
+# TYPE brokers_localhost_9092_2_rxerrs_total counter
+brokers_localhost_9092_2_rxerrs_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9092_2_rxidle_total Microseconds since last socket receive (or -1 if no receives yet for current connection).
+# TYPE brokers_localhost_9092_2_rxidle_total counter
+brokers_localhost_9092_2_rxidle_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9092_2_rxpartial_total Total number of partial MessageSets received. The broker may return partial responses if the full MessageSet could not fit in the remaining Fetch response size.
+# TYPE brokers_localhost_9092_2_rxpartial_total counter
+brokers_localhost_9092_2_rxpartial_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9092_2_stateage Time since last broker state change (microseconds)
+# TYPE brokers_localhost_9092_2_stateage gauge
+brokers_localhost_9092_2_stateage{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 9.057234e+06
+# HELP brokers_localhost_9092_2_tx_total Total number of requests sent
+# TYPE brokers_localhost_9092_2_tx_total counter
+brokers_localhost_9092_2_tx_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 320
+# HELP brokers_localhost_9092_2_txbytes_total Total number of bytes sent
+# TYPE brokers_localhost_9092_2_txbytes_total counter
+brokers_localhost_9092_2_txbytes_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 8.4283332e+07
+# HELP brokers_localhost_9092_2_txerrs_total Total number of transmission errors
+# TYPE brokers_localhost_9092_2_txerrs_total counter
+brokers_localhost_9092_2_txerrs_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9092_2_txidle_total Microseconds since last socket send (or -1 if no sends yet for current connection).
+# TYPE brokers_localhost_9092_2_txidle_total counter
+brokers_localhost_9092_2_txidle_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9092_2_txretries_total Total number of request retries
+# TYPE brokers_localhost_9092_2_txretries_total counter
+brokers_localhost_9092_2_txretries_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9092_2_waitresp_cnt Number of requests in-flight to broker awaiting response
+# TYPE brokers_localhost_9092_2_waitresp_cnt gauge
+brokers_localhost_9092_2_waitresp_cnt{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9092_2_waitresp_msg_cnt Number of messages in-flight to broker awaiting response
+# TYPE brokers_localhost_9092_2_waitresp_msg_cnt gauge
+brokers_localhost_9092_2_waitresp_msg_cnt{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9092_2_wakeups_total Broker thread poll loop wakeups
+# TYPE brokers_localhost_9092_2_wakeups_total counter
+brokers_localhost_9092_2_wakeups_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 591067
+# HELP brokers_localhost_9092_2_zbuf_grow_total Total number of decompression buffer size increases
+# TYPE brokers_localhost_9092_2_zbuf_grow_total counter
+brokers_localhost_9092_2_zbuf_grow_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9093_3_connects_total Number of connection attempts, including successful and failed, and name resolution failures.
+# TYPE brokers_localhost_9093_3_connects_total counter
+brokers_localhost_9093_3_connects_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9093_3_disconnects_total Number of disconnects (triggered by broker, network, load-balancer, etc.).
+# TYPE brokers_localhost_9093_3_disconnects_total counter
+brokers_localhost_9093_3_disconnects_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9093_3_outbuf_cnt Number of requests awaiting transmission to broker
+# TYPE brokers_localhost_9093_3_outbuf_cnt gauge
+brokers_localhost_9093_3_outbuf_cnt{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9093_3_outbuf_msg_cnt Number of messages awaiting transmission to broker
+# TYPE brokers_localhost_9093_3_outbuf_msg_cnt gauge
+brokers_localhost_9093_3_outbuf_msg_cnt{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9093_3_req_timeouts_total Total number of requests timed out
+# TYPE brokers_localhost_9093_3_req_timeouts_total counter
+brokers_localhost_9093_3_req_timeouts_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9093_3_rx_total Total number of responses received
+# TYPE brokers_localhost_9093_3_rx_total counter
+brokers_localhost_9093_3_rx_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 310
+# HELP brokers_localhost_9093_3_rxbytes_total Total number of bytes received
+# TYPE brokers_localhost_9093_3_rxbytes_total counter
+brokers_localhost_9093_3_rxbytes_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 15104
+# HELP brokers_localhost_9093_3_rxcorriderrs_total Total number of unmatched correlation ids in response (typically for timed out requests)
+# TYPE brokers_localhost_9093_3_rxcorriderrs_total counter
+brokers_localhost_9093_3_rxcorriderrs_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9093_3_rxerrs_total Total number of receive errors
+# TYPE brokers_localhost_9093_3_rxerrs_total counter
+brokers_localhost_9093_3_rxerrs_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9093_3_rxidle_total Microseconds since last socket receive (or -1 if no receives yet for current connection).
+# TYPE brokers_localhost_9093_3_rxidle_total counter
+brokers_localhost_9093_3_rxidle_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9093_3_rxpartial_total Total number of partial MessageSets received. The broker may return partial responses if the full MessageSet could not fit in the remaining Fetch response size.
+# TYPE brokers_localhost_9093_3_rxpartial_total counter
+brokers_localhost_9093_3_rxpartial_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9093_3_stateage Time since last broker state change (microseconds)
+# TYPE brokers_localhost_9093_3_stateage gauge
+brokers_localhost_9093_3_stateage{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 9.057209e+06
+# HELP brokers_localhost_9093_3_tx_total Total number of requests sent
+# TYPE brokers_localhost_9093_3_tx_total counter
+brokers_localhost_9093_3_tx_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 310
+# HELP brokers_localhost_9093_3_txbytes_total Total number of bytes sent
+# TYPE brokers_localhost_9093_3_txbytes_total counter
+brokers_localhost_9093_3_txbytes_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 8.4301122e+07
+# HELP brokers_localhost_9093_3_txerrs_total Total number of transmission errors
+# TYPE brokers_localhost_9093_3_txerrs_total counter
+brokers_localhost_9093_3_txerrs_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9093_3_txidle_total Microseconds since last socket send (or -1 if no sends yet for current connection).
+# TYPE brokers_localhost_9093_3_txidle_total counter
+brokers_localhost_9093_3_txidle_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9093_3_txretries_total Total number of request retries
+# TYPE brokers_localhost_9093_3_txretries_total counter
+brokers_localhost_9093_3_txretries_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9093_3_waitresp_cnt Number of requests in-flight to broker awaiting response
+# TYPE brokers_localhost_9093_3_waitresp_cnt gauge
+brokers_localhost_9093_3_waitresp_cnt{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9093_3_waitresp_msg_cnt Number of messages in-flight to broker awaiting response
+# TYPE brokers_localhost_9093_3_waitresp_msg_cnt gauge
+brokers_localhost_9093_3_waitresp_msg_cnt{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9093_3_wakeups_total Broker thread poll loop wakeups
+# TYPE brokers_localhost_9093_3_wakeups_total counter
+brokers_localhost_9093_3_wakeups_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 607956
+# HELP brokers_localhost_9093_3_zbuf_grow_total Total number of decompression buffer size increases
+# TYPE brokers_localhost_9093_3_zbuf_grow_total counter
+brokers_localhost_9093_3_zbuf_grow_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9094_4_connects_total Number of connection attempts, including successful and failed, and name resolution failures.
+# TYPE brokers_localhost_9094_4_connects_total counter
+brokers_localhost_9094_4_connects_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9094_4_disconnects_total Number of disconnects (triggered by broker, network, load-balancer, etc.).
+# TYPE brokers_localhost_9094_4_disconnects_total counter
+brokers_localhost_9094_4_disconnects_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9094_4_outbuf_cnt Number of requests awaiting transmission to broker
+# TYPE brokers_localhost_9094_4_outbuf_cnt gauge
+brokers_localhost_9094_4_outbuf_cnt{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9094_4_outbuf_msg_cnt Number of messages awaiting transmission to broker
+# TYPE brokers_localhost_9094_4_outbuf_msg_cnt gauge
+brokers_localhost_9094_4_outbuf_msg_cnt{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9094_4_req_timeouts_total Total number of requests timed out
+# TYPE brokers_localhost_9094_4_req_timeouts_total counter
+brokers_localhost_9094_4_req_timeouts_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9094_4_rx_total Total number of responses received
+# TYPE brokers_localhost_9094_4_rx_total counter
+brokers_localhost_9094_4_rx_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 1
+# HELP brokers_localhost_9094_4_rxbytes_total Total number of bytes received
+# TYPE brokers_localhost_9094_4_rxbytes_total counter
+brokers_localhost_9094_4_rxbytes_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 272
+# HELP brokers_localhost_9094_4_rxcorriderrs_total Total number of unmatched correlation ids in response (typically for timed out requests)
+# TYPE brokers_localhost_9094_4_rxcorriderrs_total counter
+brokers_localhost_9094_4_rxcorriderrs_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9094_4_rxerrs_total Total number of receive errors
+# TYPE brokers_localhost_9094_4_rxerrs_total counter
+brokers_localhost_9094_4_rxerrs_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9094_4_rxidle_total Microseconds since last socket receive (or -1 if no receives yet for current connection).
+# TYPE brokers_localhost_9094_4_rxidle_total counter
+brokers_localhost_9094_4_rxidle_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9094_4_rxpartial_total Total number of partial MessageSets received. The broker may return partial responses if the full MessageSet could not fit in the remaining Fetch response size.
+# TYPE brokers_localhost_9094_4_rxpartial_total counter
+brokers_localhost_9094_4_rxpartial_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9094_4_stateage Time since last broker state change (microseconds)
+# TYPE brokers_localhost_9094_4_stateage gauge
+brokers_localhost_9094_4_stateage{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 9.057207e+06
+# HELP brokers_localhost_9094_4_tx_total Total number of requests sent
+# TYPE brokers_localhost_9094_4_tx_total counter
+brokers_localhost_9094_4_tx_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 1
+# HELP brokers_localhost_9094_4_txbytes_total Total number of bytes sent
+# TYPE brokers_localhost_9094_4_txbytes_total counter
+brokers_localhost_9094_4_txbytes_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 25
+# HELP brokers_localhost_9094_4_txerrs_total Total number of transmission errors
+# TYPE brokers_localhost_9094_4_txerrs_total counter
+brokers_localhost_9094_4_txerrs_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9094_4_txidle_total Microseconds since last socket send (or -1 if no sends yet for current connection).
+# TYPE brokers_localhost_9094_4_txidle_total counter
+brokers_localhost_9094_4_txidle_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9094_4_txretries_total Total number of request retries
+# TYPE brokers_localhost_9094_4_txretries_total counter
+brokers_localhost_9094_4_txretries_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9094_4_waitresp_cnt Number of requests in-flight to broker awaiting response
+# TYPE brokers_localhost_9094_4_waitresp_cnt gauge
+brokers_localhost_9094_4_waitresp_cnt{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9094_4_waitresp_msg_cnt Number of messages in-flight to broker awaiting response
+# TYPE brokers_localhost_9094_4_waitresp_msg_cnt gauge
+brokers_localhost_9094_4_waitresp_msg_cnt{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_localhost_9094_4_wakeups_total Broker thread poll loop wakeups
+# TYPE brokers_localhost_9094_4_wakeups_total counter
+brokers_localhost_9094_4_wakeups_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 4
+# HELP brokers_localhost_9094_4_zbuf_grow_total Total number of decompression buffer size increases
+# TYPE brokers_localhost_9094_4_zbuf_grow_total counter
+brokers_localhost_9094_4_zbuf_grow_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
 # HELP metadata_cache_cnt Number of topics in the metadata cache.
 # TYPE metadata_cache_cnt gauge
 metadata_cache_cnt{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 1
@@ -37,6 +226,246 @@ simple_cnt{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
 # HELP time_total Wall clock time in seconds since the epoch
 # TYPE time_total counter
 time_total{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 1.527060869e+09
+# HELP topics_test_age Age of client's topic object (milliseconds)
+# TYPE topics_test_age gauge
+topics_test_age{client_id="rdkafka",name="rdkafka#producer-1",topics_topic="test",type="producer"} 0
+# HELP topics_test_metadata_age Age of metadata from broker for this topic (milliseconds)
+# TYPE topics_test_metadata_age gauge
+topics_test_metadata_age{client_id="rdkafka",name="rdkafka#producer-1",topics_topic="test",type="producer"} 9060
+# HELP topics_test_partitions_0_app_offset Offset of last message passed to application   1
+# TYPE topics_test_partitions_0_app_offset gauge
+topics_test_partitions_0_app_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} -1001
+# HELP topics_test_partitions_0_committed_offset Last committed offset
+# TYPE topics_test_partitions_0_committed_offset gauge
+topics_test_partitions_0_committed_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} -1001
+# HELP topics_test_partitions_0_consumer_lag Difference between (hi_offset or ls_offset) and committed_offset). hi_offset is used when isolation.level=read_uncommitted, otherwise ls_offset.
+# TYPE topics_test_partitions_0_consumer_lag gauge
+topics_test_partitions_0_consumer_lag{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} -1
+# HELP topics_test_partitions_0_consumer_lag_stored Difference between (hi_offset or ls_offset) and stored_offset. See consumer_lag and stored_offset.
+# TYPE topics_test_partitions_0_consumer_lag_stored gauge
+topics_test_partitions_0_consumer_lag_stored{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_0_eof_offset Last PARTITION_EOF signaled offset
+# TYPE topics_test_partitions_0_eof_offset gauge
+topics_test_partitions_0_eof_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} -1001
+# HELP topics_test_partitions_0_fetchq_cnt Number of pre-fetched messages in fetch queue
+# TYPE topics_test_partitions_0_fetchq_cnt gauge
+topics_test_partitions_0_fetchq_cnt{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_0_fetchq_size Bytes in fetchq
+# TYPE topics_test_partitions_0_fetchq_size gauge
+topics_test_partitions_0_fetchq_size{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_0_hi_offset Partition's high watermark offset on broker
+# TYPE topics_test_partitions_0_hi_offset gauge
+topics_test_partitions_0_hi_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} -1001
+# HELP topics_test_partitions_0_lo_offset Partition's low watermark offset on broker
+# TYPE topics_test_partitions_0_lo_offset gauge
+topics_test_partitions_0_lo_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} -1001
+# HELP topics_test_partitions_0_ls_offset Partition's last stable offset on broker, or same as hi_offset is broker version is less than 0.11.0.0.
+# TYPE topics_test_partitions_0_ls_offset gauge
+topics_test_partitions_0_ls_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_0_msgq_bytes Number of bytes in msgq_cnt
+# TYPE topics_test_partitions_0_msgq_bytes gauge
+topics_test_partitions_0_msgq_bytes{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 31
+# HELP topics_test_partitions_0_msgq_cnt Number of messages waiting to be produced in first-level queue
+# TYPE topics_test_partitions_0_msgq_cnt gauge
+topics_test_partitions_0_msgq_cnt{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 1
+# HELP topics_test_partitions_0_msgs_inflight Current number of messages in-flight to/from broker
+# TYPE topics_test_partitions_0_msgs_inflight gauge
+topics_test_partitions_0_msgs_inflight{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_0_msgs_total Total number of messages received (consumer, same as rxmsgs), or total number of messages produced (possibly not yet transmitted) (producer).
+# TYPE topics_test_partitions_0_msgs_total counter
+topics_test_partitions_0_msgs_total{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 2.16051e+06
+# HELP topics_test_partitions_0_next_ack_seq Next expected acked sequence (idempotent producer)
+# TYPE topics_test_partitions_0_next_ack_seq gauge
+topics_test_partitions_0_next_ack_seq{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_0_next_err_seq Next expected errored sequence (idempotent producer)
+# TYPE topics_test_partitions_0_next_err_seq gauge
+topics_test_partitions_0_next_err_seq{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_0_next_offset Next offset to fetch
+# TYPE topics_test_partitions_0_next_offset gauge
+topics_test_partitions_0_next_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_0_query_offset Current/Last logical offset query
+# TYPE topics_test_partitions_0_query_offset gauge
+topics_test_partitions_0_query_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_0_rx_ver_drops_total Dropped outdated messages
+# TYPE topics_test_partitions_0_rx_ver_drops_total counter
+topics_test_partitions_0_rx_ver_drops_total{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_0_rxbytes_total Total number of bytes received for rxmsgs
+# TYPE topics_test_partitions_0_rxbytes_total counter
+topics_test_partitions_0_rxbytes_total{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_0_rxmsgs_total Total number of messages consumed, not including ignored messages (due to offset, etc).
+# TYPE topics_test_partitions_0_rxmsgs_total counter
+topics_test_partitions_0_rxmsgs_total{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_0_stored_offset Offset to be committed
+# TYPE topics_test_partitions_0_stored_offset gauge
+topics_test_partitions_0_stored_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} -1001
+# HELP topics_test_partitions_0_txbytes_total Total number of bytes transmitted for txmsgs
+# TYPE topics_test_partitions_0_txbytes_total counter
+topics_test_partitions_0_txbytes_total{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 6.6669127e+07
+# HELP topics_test_partitions_0_txmsgs_total Total number of messages transmitted (produced)
+# TYPE topics_test_partitions_0_txmsgs_total counter
+topics_test_partitions_0_txmsgs_total{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 2.150617e+06
+# HELP topics_test_partitions_0_xmit_msgq_bytes Number of bytes in xmit_msgq
+# TYPE topics_test_partitions_0_xmit_msgq_bytes gauge
+topics_test_partitions_0_xmit_msgq_bytes{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_0_xmit_msgq_cnt Number of messages ready to be produced in transmit queue
+# TYPE topics_test_partitions_0_xmit_msgq_cnt gauge
+topics_test_partitions_0_xmit_msgq_cnt{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="3",topics_partitions_fetch_state="none",topics_partitions_leader="3",topics_partitions_partition="0",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_1_app_offset Offset of last message passed to application   1
+# TYPE topics_test_partitions_1_app_offset gauge
+topics_test_partitions_1_app_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} -1001
+# HELP topics_test_partitions_1_committed_offset Last committed offset
+# TYPE topics_test_partitions_1_committed_offset gauge
+topics_test_partitions_1_committed_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} -1001
+# HELP topics_test_partitions_1_consumer_lag Difference between (hi_offset or ls_offset) and committed_offset). hi_offset is used when isolation.level=read_uncommitted, otherwise ls_offset.
+# TYPE topics_test_partitions_1_consumer_lag gauge
+topics_test_partitions_1_consumer_lag{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} -1
+# HELP topics_test_partitions_1_consumer_lag_stored Difference between (hi_offset or ls_offset) and stored_offset. See consumer_lag and stored_offset.
+# TYPE topics_test_partitions_1_consumer_lag_stored gauge
+topics_test_partitions_1_consumer_lag_stored{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_1_eof_offset Last PARTITION_EOF signaled offset
+# TYPE topics_test_partitions_1_eof_offset gauge
+topics_test_partitions_1_eof_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} -1001
+# HELP topics_test_partitions_1_fetchq_cnt Number of pre-fetched messages in fetch queue
+# TYPE topics_test_partitions_1_fetchq_cnt gauge
+topics_test_partitions_1_fetchq_cnt{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_1_fetchq_size Bytes in fetchq
+# TYPE topics_test_partitions_1_fetchq_size gauge
+topics_test_partitions_1_fetchq_size{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_1_hi_offset Partition's high watermark offset on broker
+# TYPE topics_test_partitions_1_hi_offset gauge
+topics_test_partitions_1_hi_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} -1001
+# HELP topics_test_partitions_1_lo_offset Partition's low watermark offset on broker
+# TYPE topics_test_partitions_1_lo_offset gauge
+topics_test_partitions_1_lo_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} -1001
+# HELP topics_test_partitions_1_ls_offset Partition's last stable offset on broker, or same as hi_offset is broker version is less than 0.11.0.0.
+# TYPE topics_test_partitions_1_ls_offset gauge
+topics_test_partitions_1_ls_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_1_msgq_bytes Number of bytes in msgq_cnt
+# TYPE topics_test_partitions_1_msgq_bytes gauge
+topics_test_partitions_1_msgq_bytes{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_1_msgq_cnt Number of messages waiting to be produced in first-level queue
+# TYPE topics_test_partitions_1_msgq_cnt gauge
+topics_test_partitions_1_msgq_cnt{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_1_msgs_inflight Current number of messages in-flight to/from broker
+# TYPE topics_test_partitions_1_msgs_inflight gauge
+topics_test_partitions_1_msgs_inflight{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_1_msgs_total Total number of messages received (consumer, same as rxmsgs), or total number of messages produced (possibly not yet transmitted) (producer).
+# TYPE topics_test_partitions_1_msgs_total counter
+topics_test_partitions_1_msgs_total{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 2.159735e+06
+# HELP topics_test_partitions_1_next_ack_seq Next expected acked sequence (idempotent producer)
+# TYPE topics_test_partitions_1_next_ack_seq gauge
+topics_test_partitions_1_next_ack_seq{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_1_next_err_seq Next expected errored sequence (idempotent producer)
+# TYPE topics_test_partitions_1_next_err_seq gauge
+topics_test_partitions_1_next_err_seq{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_1_next_offset Next offset to fetch
+# TYPE topics_test_partitions_1_next_offset gauge
+topics_test_partitions_1_next_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_1_query_offset Current/Last logical offset query
+# TYPE topics_test_partitions_1_query_offset gauge
+topics_test_partitions_1_query_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_1_rx_ver_drops_total Dropped outdated messages
+# TYPE topics_test_partitions_1_rx_ver_drops_total counter
+topics_test_partitions_1_rx_ver_drops_total{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_1_rxbytes_total Total number of bytes received for rxmsgs
+# TYPE topics_test_partitions_1_rxbytes_total counter
+topics_test_partitions_1_rxbytes_total{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_1_rxmsgs_total Total number of messages consumed, not including ignored messages (due to offset, etc).
+# TYPE topics_test_partitions_1_rxmsgs_total counter
+topics_test_partitions_1_rxmsgs_total{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_1_stored_offset Offset to be committed
+# TYPE topics_test_partitions_1_stored_offset gauge
+topics_test_partitions_1_stored_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} -1001
+# HELP topics_test_partitions_1_txbytes_total Total number of bytes transmitted for txmsgs
+# TYPE topics_test_partitions_1_txbytes_total counter
+topics_test_partitions_1_txbytes_total{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 6.6654216e+07
+# HELP topics_test_partitions_1_txmsgs_total Total number of messages transmitted (produced)
+# TYPE topics_test_partitions_1_txmsgs_total counter
+topics_test_partitions_1_txmsgs_total{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 2.150136e+06
+# HELP topics_test_partitions_1_xmit_msgq_bytes Number of bytes in xmit_msgq
+# TYPE topics_test_partitions_1_xmit_msgq_bytes gauge
+topics_test_partitions_1_xmit_msgq_bytes{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions_1_xmit_msgq_cnt Number of messages ready to be produced in transmit queue
+# TYPE topics_test_partitions_1_xmit_msgq_cnt gauge
+topics_test_partitions_1_xmit_msgq_cnt{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="2",topics_partitions_fetch_state="none",topics_partitions_leader="2",topics_partitions_partition="1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions__1_app_offset Offset of last message passed to application   1
+# TYPE topics_test_partitions__1_app_offset gauge
+topics_test_partitions__1_app_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} -1001
+# HELP topics_test_partitions__1_committed_offset Last committed offset
+# TYPE topics_test_partitions__1_committed_offset gauge
+topics_test_partitions__1_committed_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} -1001
+# HELP topics_test_partitions__1_consumer_lag Difference between (hi_offset or ls_offset) and committed_offset). hi_offset is used when isolation.level=read_uncommitted, otherwise ls_offset.
+# TYPE topics_test_partitions__1_consumer_lag gauge
+topics_test_partitions__1_consumer_lag{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} -1
+# HELP topics_test_partitions__1_consumer_lag_stored Difference between (hi_offset or ls_offset) and stored_offset. See consumer_lag and stored_offset.
+# TYPE topics_test_partitions__1_consumer_lag_stored gauge
+topics_test_partitions__1_consumer_lag_stored{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions__1_eof_offset Last PARTITION_EOF signaled offset
+# TYPE topics_test_partitions__1_eof_offset gauge
+topics_test_partitions__1_eof_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} -1001
+# HELP topics_test_partitions__1_fetchq_cnt Number of pre-fetched messages in fetch queue
+# TYPE topics_test_partitions__1_fetchq_cnt gauge
+topics_test_partitions__1_fetchq_cnt{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions__1_fetchq_size Bytes in fetchq
+# TYPE topics_test_partitions__1_fetchq_size gauge
+topics_test_partitions__1_fetchq_size{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions__1_hi_offset Partition's high watermark offset on broker
+# TYPE topics_test_partitions__1_hi_offset gauge
+topics_test_partitions__1_hi_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} -1001
+# HELP topics_test_partitions__1_lo_offset Partition's low watermark offset on broker
+# TYPE topics_test_partitions__1_lo_offset gauge
+topics_test_partitions__1_lo_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} -1001
+# HELP topics_test_partitions__1_ls_offset Partition's last stable offset on broker, or same as hi_offset is broker version is less than 0.11.0.0.
+# TYPE topics_test_partitions__1_ls_offset gauge
+topics_test_partitions__1_ls_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions__1_msgq_bytes Number of bytes in msgq_cnt
+# TYPE topics_test_partitions__1_msgq_bytes gauge
+topics_test_partitions__1_msgq_bytes{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions__1_msgq_cnt Number of messages waiting to be produced in first-level queue
+# TYPE topics_test_partitions__1_msgq_cnt gauge
+topics_test_partitions__1_msgq_cnt{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions__1_msgs_inflight Current number of messages in-flight to/from broker
+# TYPE topics_test_partitions__1_msgs_inflight gauge
+topics_test_partitions__1_msgs_inflight{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions__1_msgs_total Total number of messages received (consumer, same as rxmsgs), or total number of messages produced (possibly not yet transmitted) (producer).
+# TYPE topics_test_partitions__1_msgs_total counter
+topics_test_partitions__1_msgs_total{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 1177
+# HELP topics_test_partitions__1_next_ack_seq Next expected acked sequence (idempotent producer)
+# TYPE topics_test_partitions__1_next_ack_seq gauge
+topics_test_partitions__1_next_ack_seq{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions__1_next_err_seq Next expected errored sequence (idempotent producer)
+# TYPE topics_test_partitions__1_next_err_seq gauge
+topics_test_partitions__1_next_err_seq{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions__1_next_offset Next offset to fetch
+# TYPE topics_test_partitions__1_next_offset gauge
+topics_test_partitions__1_next_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions__1_query_offset Current/Last logical offset query
+# TYPE topics_test_partitions__1_query_offset gauge
+topics_test_partitions__1_query_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions__1_rx_ver_drops_total Dropped outdated messages
+# TYPE topics_test_partitions__1_rx_ver_drops_total counter
+topics_test_partitions__1_rx_ver_drops_total{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions__1_rxbytes_total Total number of bytes received for rxmsgs
+# TYPE topics_test_partitions__1_rxbytes_total counter
+topics_test_partitions__1_rxbytes_total{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions__1_rxmsgs_total Total number of messages consumed, not including ignored messages (due to offset, etc).
+# TYPE topics_test_partitions__1_rxmsgs_total counter
+topics_test_partitions__1_rxmsgs_total{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions__1_stored_offset Offset to be committed
+# TYPE topics_test_partitions__1_stored_offset gauge
+topics_test_partitions__1_stored_offset{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} -1001
+# HELP topics_test_partitions__1_txbytes_total Total number of bytes transmitted for txmsgs
+# TYPE topics_test_partitions__1_txbytes_total counter
+topics_test_partitions__1_txbytes_total{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions__1_txmsgs_total Total number of messages transmitted (produced)
+# TYPE topics_test_partitions__1_txmsgs_total counter
+topics_test_partitions__1_txmsgs_total{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions__1_xmit_msgq_bytes Number of bytes in xmit_msgq
+# TYPE topics_test_partitions__1_xmit_msgq_bytes gauge
+topics_test_partitions__1_xmit_msgq_bytes{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 0
+# HELP topics_test_partitions__1_xmit_msgq_cnt Number of messages ready to be produced in transmit queue
+# TYPE topics_test_partitions__1_xmit_msgq_cnt gauge
+topics_test_partitions__1_xmit_msgq_cnt{client_id="rdkafka",name="rdkafka#producer-1",topics_partitions_broker="-1",topics_partitions_fetch_state="none",topics_partitions_leader="-1",topics_partitions_partition="-1",topics_topic="test",type="producer"} 0
 # HELP ts_total internal monotonic clock (microseconds)
 # TYPE ts_total counter
 ts_total{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 5.016483227792e+12

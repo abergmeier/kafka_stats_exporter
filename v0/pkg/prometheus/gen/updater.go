@@ -2,6 +2,7 @@ package gen
 
 import (
 	"reflect"
+	"strconv"
 
 	"github.com/abergmeier/kafka_stats_exporter/internal/assert"
 	"github.com/abergmeier/kafka_stats_exporter/internal/collector"
@@ -19,11 +20,15 @@ type updater struct {
 }
 
 func (u *updater) Update(v interface{}, labels prometheus.Labels) {
+	newLabels := make(prometheus.Labels, len(labels))
+	for k, v := range labels {
+		newLabels[k] = v
+	}
 	for k, v := range u.c.Rlr.Lr.LabelsForValue(v) {
-		labels[k] = v
+		newLabels[k] = v
 	}
 
-	u.update(v, labels)
+	u.update(v, newLabels)
 }
 
 func (u *updater) update(v interface{}, labels prometheus.Labels) {
@@ -48,18 +53,13 @@ func (u *updater) update(v interface{}, labels prometheus.Labels) {
 	for _, m := range u.c.Maps {
 		fv := rv.FieldByIndex([]int{m.IndexInStruct})
 		assert.AssertMap(fv)
-		ln := LabelNames{}
-		for k := range labels {
-			ln = append(ln, k)
-		}
-		updateMapped(&m, u.c.Rlr.Fields[m.IndexInStruct], fv, ln)
+		updateMapped(&m, u.c.Rlr.Fields[m.IndexInStruct], fv)
 		for mk, mc := range m.Mapped {
 			// While we only support strings and ints we usually use an alias to
 			// make semantics clear. Thus we need to convert from string or int
 			// to alias here.
 			aliased := mk.Convert(fv.Type().Key())
 			mv := fv.MapIndex(aliased)
-			mc.Rlr = u.c.Rlr.Fields[m.IndexInStruct]
 			(&updater{
 				c: mc,
 			}).Update(mv.Interface(), labels)
@@ -67,7 +67,7 @@ func (u *updater) update(v interface{}, labels prometheus.Labels) {
 	}
 }
 
-func updateMapped(d *collector.DynamicMap, rlr *label.RecursiveReflector, fv reflect.Value, labelNames LabelNames) {
+func updateMapped(d *collector.DynamicMap, rlr *label.RecursiveReflector, fv reflect.Value) {
 
 	var keysToDelete map[reflect.Value]struct{}
 	for k := range d.Mapped {
@@ -76,22 +76,28 @@ func updateMapped(d *collector.DynamicMap, rlr *label.RecursiveReflector, fv ref
 
 	iter := fv.MapRange()
 	for iter.Next() {
-		key := iter.Key()
-		_, ok := d.Mapped[key]
+		rk := iter.Key()
+		_, ok := d.Mapped[rk]
 		if ok {
 			// We can reuse map entry
-			delete(keysToDelete, key)
+			delete(keysToDelete, rk)
 			continue
+		}
+		var keyString string
+		if rk.CanInt() {
+			keyString = strconv.FormatInt(rk.Int(), 10)
+		} else {
+			keyString = rk.String()
 		}
 		vt := iter.Value().Type()
 		cu := &collector.Collectors{}
 		if d.StructParent == "" {
-			cu.Fill(vt, rlr, d.FieldName+"_"+key.String()+"_", labelNames)
+			cu.Fill(vt, rlr, d.FieldName+"_"+keyString)
 		} else {
-			cu.Fill(vt, rlr, d.StructParent+"_"+d.FieldName+"_"+key.String()+"_", labelNames)
+			cu.Fill(vt, rlr, d.StructParent+"_"+d.FieldName+"_"+keyString)
 		}
 		// We need new map entry
-		d.Mapped[key] = cu
+		d.Mapped[rk] = cu
 	}
 	// Delete superfluous keys
 	for k := range keysToDelete {

@@ -74,7 +74,7 @@ func TestNewRecursiveUpdaterFromTags(t *testing.T) {
 	_, _ = NewRecursiveMetricsFromTags(&typed.Stats{})
 }
 
-func TestSimple(t *testing.T) {
+func TestUpdateSimple(t *testing.T) {
 	col, upd := NewRecursiveMetricsFromTags(simpleStats{})
 	upd.Update(&simple, prometheus.Labels{})
 	err := testutil.CollectAndCompare(col, expectedSimple)
@@ -83,7 +83,7 @@ func TestSimple(t *testing.T) {
 	}
 }
 
-func TestUpdate(t *testing.T) {
+func TestUpdateFull(t *testing.T) {
 	col, upd := NewRecursiveMetricsFromTags(&full)
 	upd.Update(full, prometheus.Labels{})
 	err := testutil.CollectAndCompare(col, expectedFull)

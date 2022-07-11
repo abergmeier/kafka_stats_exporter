@@ -48,7 +48,7 @@ func (u *Collectors) Collect(c chan<- prometheus.Metric) {
 	}
 }
 
-func (u *Collectors) Fill(t reflect.Type, rlr *label.RecursiveReflector, parent string, labelNames label.Names) {
+func (u *Collectors) Fill(t reflect.Type, rlr *label.RecursiveReflector, parent string) {
 	u.T = t
 	u.Rlr = rlr
 	if u.T != u.Rlr.T {
@@ -59,9 +59,7 @@ func (u *Collectors) Fill(t reflect.Type, rlr *label.RecursiveReflector, parent 
 	for i, f := range fields {
 		tag := f.Tag.Get("kpromcol")
 		if tag != "" {
-			ln := labelNames
-			ln = append(ln, rlr.Ln...)
-			u.StaticCollectors = append(u.StaticCollectors, *makeGenerated(i, tag, f, parent, ln))
+			u.StaticCollectors = append(u.StaticCollectors, *makeGenerated(i, tag, f, parent, u.Rlr.Ln))
 			continue
 		}
 		tag = f.Tag.Get("kprommap")
@@ -83,9 +81,9 @@ func (u *Collectors) Fill(t reflect.Type, rlr *label.RecursiveReflector, parent 
 		if tag != "" {
 			cu := &Collectors{}
 			if parent == "" {
-				cu.Fill(f.Type, rlr.Fields[i], tag+"_", labelNames)
+				cu.Fill(f.Type, rlr.Fields[i], tag)
 			} else {
-				cu.Fill(f.Type, rlr.Fields[i], parent+"_"+tag+"_", labelNames)
+				cu.Fill(f.Type, rlr.Fields[i], parent+"_"+tag)
 			}
 			u.children = append(u.children, cu)
 			continue
