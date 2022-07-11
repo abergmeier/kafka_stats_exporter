@@ -4,6 +4,7 @@ import (
 	"reflect"
 
 	"github.com/abergmeier/kafka_stats_exporter/internal/assert"
+	"github.com/prometheus/client_golang/prometheus"
 )
 
 type KeyValue struct {
@@ -16,6 +17,37 @@ type KeyValueGenerator struct {
 	FieldType  reflect.Type
 	LabelName  string
 	T          reflect.Type
+}
+
+//Names are all possible names for Labels
+type Names = []string
+
+//LabelReflector uses a struct values to extract Labels
+type Reflector struct {
+	Generators []KeyValueGenerator
+	T          reflect.Type
+}
+
+type RecursiveLabelReflector struct {
+	Lr     *Reflector
+	Ln     Names
+	Fields map[int]*RecursiveLabelReflector
+	T      reflect.Type
+}
+
+func (lr *Reflector) LabelsForValue(v interface{}) prometheus.Labels {
+	rv := reflect.ValueOf(v)
+	switch rv.Kind() {
+	case reflect.Pointer:
+		rv = rv.Elem()
+	}
+	assert.AssertType(rv, lr.T)
+	ls := make(prometheus.Labels, len(lr.Generators))
+	for _, g := range lr.Generators {
+		kv := g.GenerateFromValue(v)
+		ls[kv.Key] = kv.Value
+	}
+	return ls
 }
 
 func (g *KeyValueGenerator) GenerateFromValue(v interface{}) KeyValue {

@@ -4,30 +4,15 @@ import (
 	"reflect"
 	"sort"
 
-	"github.com/abergmeier/kafka_stats_exporter/internal/assert"
 	"github.com/abergmeier/kafka_stats_exporter/internal/label"
-	"github.com/prometheus/client_golang/prometheus"
 )
 
 //LabelNames are all possible names for Labels
-type LabelNames = []string
-
-//LabelReflector uses a struct values to extract Labels
-type LabelReflector struct {
-	Generators []label.KeyValueGenerator
-	T          reflect.Type
-}
-
-type oneLabelGenerator []func(interface{}) label.KeyValue
+type LabelNames = label.Names
 
 type labelNameCache map[reflect.Type]LabelNames
 
-type recursiveLabelReflector struct {
-	Lr     *LabelReflector
-	Ln     LabelNames
-	Fields map[int]*recursiveLabelReflector
-	T      reflect.Type
-}
+type LabelReflector = label.Reflector
 
 // MakeLabelReflector uses reflection Information to build LabelReflector.
 // for structs. LabelReflector can then later on be used to performantly
@@ -77,27 +62,12 @@ func MakeLabelReflector(t reflect.Type, parent string, parentLabelNames LabelNam
 	}, labelNames
 }
 
-func (lr *LabelReflector) LabelsForValue(v interface{}) prometheus.Labels {
-	rv := reflect.ValueOf(v)
-	switch rv.Kind() {
-	case reflect.Pointer:
-		rv = rv.Elem()
-	}
-	assert.AssertType(rv, lr.T)
-	ls := make(prometheus.Labels, len(lr.Generators))
-	for _, g := range lr.Generators {
-		kv := g.GenerateFromValue(v)
-		ls[kv.Key] = kv.Value
-	}
-	return ls
-}
-
-func fillLabels(t reflect.Type, rlr *recursiveLabelReflector, parent string, parentLabelNames LabelNames) {
+func fillLabels(t reflect.Type, rlr *label.RecursiveLabelReflector, parent string, parentLabelNames LabelNames) {
 
 	rlr.T = t
 
 	rlr.Lr, rlr.Ln = MakeLabelReflector(t, parent, parentLabelNames)
-	rlr.Fields = map[int]*recursiveLabelReflector{}
+	rlr.Fields = map[int]*label.RecursiveLabelReflector{}
 
 	for _, ft := range reflect.VisibleFields(t) {
 		tag := ft.Tag.Get("kprommap")
@@ -107,7 +77,7 @@ func fillLabels(t reflect.Type, rlr *recursiveLabelReflector, parent string, par
 			default:
 				panic("Invalid code path")
 			}
-			frlr := recursiveLabelReflector{}
+			frlr := label.RecursiveLabelReflector{}
 			rlr.Fields[ft.Index[0]] = &frlr
 			if parent == "" {
 				fillLabels(ft.Type.Elem(), &frlr, tag, rlr.Ln)
@@ -122,7 +92,7 @@ func fillLabels(t reflect.Type, rlr *recursiveLabelReflector, parent string, par
 			default:
 				panic("Invalid code path")
 			}
-			frlr := recursiveLabelReflector{}
+			frlr := label.RecursiveLabelReflector{}
 			rlr.Fields[ft.Index[0]] = &frlr
 			if parent == "" {
 				fillLabels(ft.Type, &frlr, tag, rlr.Ln)

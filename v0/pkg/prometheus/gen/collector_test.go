@@ -70,23 +70,23 @@ func init() {
 }
 
 func TestNewRecursiveUpdaterFromTags(t *testing.T) {
-	_ = NewRecursiveUpdaterFromTags(typed.Stats{})
-	_ = NewRecursiveUpdaterFromTags(&typed.Stats{})
+	_, _ = NewRecursiveUpdaterFromTags(typed.Stats{})
+	_, _ = NewRecursiveUpdaterFromTags(&typed.Stats{})
 }
 
 func TestSimple(t *testing.T) {
-	upd := NewRecursiveUpdaterFromTags(simpleStats{})
+	col, upd := NewRecursiveUpdaterFromTags(simpleStats{})
 	upd.Update(&simple, prometheus.Labels{})
-	err := testutil.CollectAndCompare(upd, expectedSimple)
+	err := testutil.CollectAndCompare(col, expectedSimple)
 	if err != nil {
 		t.Fatal("CollectAndCompare failed:", err)
 	}
 }
 
 func TestUpdate(t *testing.T) {
-	upd := NewRecursiveUpdaterFromTags(&full)
+	col, upd := NewRecursiveUpdaterFromTags(&full)
 	upd.Update(full, prometheus.Labels{})
-	err := testutil.CollectAndCompare(upd, expectedFull)
+	err := testutil.CollectAndCompare(col, expectedFull)
 	if err != nil {
 		t.Fatal("CollectAndCompare failed:", err)
 	}

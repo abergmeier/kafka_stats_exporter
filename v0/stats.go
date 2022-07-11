@@ -12,7 +12,10 @@ import (
 
 type Exporter struct {
 	stats         typed.Stats
-	cachedUpdater map[reflect.Type]gen.UpdatingCollector
+	cachedUpdater map[reflect.Type]struct {
+		collector prometheus.Collector
+		updater   gen.Updater
+	}
 }
 
 func (e *Exporter) UpdateWithStats(stats *kafka.Stats) error {
@@ -27,12 +30,12 @@ func (e *Exporter) UpdateWithStatString(stats string) error {
 	}
 
 	t := reflect.TypeOf(e.stats)
-	upd, ok := e.cachedUpdater[t]
+	ce, ok := e.cachedUpdater[t]
 	if !ok {
-		upd = gen.NewRecursiveUpdaterFromTags(e.stats)
-		e.cachedUpdater[t] = upd
+		ce.collector, ce.updater = gen.NewRecursiveUpdaterFromTags(e.stats)
+		e.cachedUpdater[t] = ce
 	}
 
-	upd.Update(e.stats, prometheus.Labels{})
+	ce.updater.Update(e.stats, prometheus.Labels{})
 	return nil
 }

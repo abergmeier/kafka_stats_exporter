@@ -21,7 +21,7 @@ var (
 	expectedLabelNames = LabelNames{
 		"client_id", "name", "type",
 	}
-	expectedRecursive = recursiveLabelReflector{
+	expectedRecursive = label.RecursiveLabelReflector{
 		Ln: []string{"client_id", "name", "type"},
 		T:  reflect.TypeOf(typed.Stats{}),
 		Lr: &LabelReflector{
@@ -32,31 +32,31 @@ var (
 				{FieldIndex: 2, FieldType: reflect.TypeOf(""), LabelName: "type", T: reflect.TypeOf(typed.Stats{})},
 			},
 		},
-		Fields: map[int]*recursiveLabelReflector{
+		Fields: map[int]*label.RecursiveLabelReflector{
 			21: {
 				Ln: []string{"brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"},
 				T:  reflect.TypeOf(typed.BrokerStats{}),
-				Fields: map[int]*recursiveLabelReflector{
+				Fields: map[int]*label.RecursiveLabelReflector{
 					28: {
-						Fields: map[int]*recursiveLabelReflector{},
+						Fields: map[int]*label.RecursiveLabelReflector{},
 						Ln:     []string{"brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"},
 						Lr:     &LabelReflector{T: reflect.TypeOf(typed.WindowStats{})},
 						T:      reflect.TypeOf(typed.WindowStats{}),
 					},
 					29: {
-						Fields: map[int]*recursiveLabelReflector{},
+						Fields: map[int]*label.RecursiveLabelReflector{},
 						Ln:     []string{"brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"},
 						Lr:     &LabelReflector{T: reflect.TypeOf(typed.WindowStats{})},
 						T:      reflect.TypeOf(typed.WindowStats{}),
 					},
 					30: {
-						Fields: map[int]*recursiveLabelReflector{},
+						Fields: map[int]*label.RecursiveLabelReflector{},
 						Ln:     []string{"brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"},
 						Lr:     &LabelReflector{T: reflect.TypeOf(typed.WindowStats{})},
 						T:      reflect.TypeOf(typed.WindowStats{}),
 					},
 					31: {
-						Fields: map[int]*recursiveLabelReflector{},
+						Fields: map[int]*label.RecursiveLabelReflector{},
 						Ln:     []string{"brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"},
 						Lr:     &LabelReflector{T: reflect.TypeOf(typed.WindowStats{})},
 						T:      reflect.TypeOf(typed.WindowStats{}),
@@ -82,21 +82,21 @@ var (
 						{FieldIndex: 0, FieldType: reflect.TypeOf(""), LabelName: "topics_topic", T: reflect.TypeOf(typed.TopicStats{})},
 					},
 				},
-				Fields: map[int]*recursiveLabelReflector{
+				Fields: map[int]*label.RecursiveLabelReflector{
 					3: {
-						Fields: map[int]*recursiveLabelReflector{},
+						Fields: map[int]*label.RecursiveLabelReflector{},
 						Ln:     []string{"client_id", "name", "topics_topic", "type"},
 						Lr:     &LabelReflector{T: reflect.TypeOf(typed.WindowStats{})},
 						T:      reflect.TypeOf(typed.WindowStats{}),
 					},
 					4: {
-						Fields: map[int]*recursiveLabelReflector{},
+						Fields: map[int]*label.RecursiveLabelReflector{},
 						Ln:     []string{"client_id", "name", "topics_topic", "type"},
 						Lr:     &LabelReflector{T: reflect.TypeOf(typed.WindowStats{})},
 						T:      reflect.TypeOf(typed.WindowStats{}),
 					},
 					5: {
-						Fields: map[int]*recursiveLabelReflector{},
+						Fields: map[int]*label.RecursiveLabelReflector{},
 						Ln:     []string{"client_id", "name", "topics_partitions_broker", "topics_partitions_fetch_state", "topics_partitions_leader", "topics_partitions_partition", "topics_topic", "type"},
 						T:      reflect.TypeOf(typed.PartitionStats{}),
 						Lr: &LabelReflector{
@@ -112,7 +112,7 @@ var (
 				},
 			},
 			23: {
-				Fields: map[int]*recursiveLabelReflector{},
+				Fields: map[int]*label.RecursiveLabelReflector{},
 				Ln:     []string{"cgrp_join_state", "cgrp_rebalance_reason", "cgrp_state", "client_id", "name", "type"},
 				T:      reflect.TypeOf(typed.CgrpStats{}),
 				Lr: &LabelReflector{
@@ -125,7 +125,7 @@ var (
 				},
 			},
 			24: {
-				Fields: map[int]*recursiveLabelReflector{},
+				Fields: map[int]*label.RecursiveLabelReflector{},
 				Ln:     []string{"client_id", "eos_idemp_state", "eos_producer_id", "eos_txn_state", "name", "type"},
 				T:      reflect.TypeOf(typed.EosStats{}),
 				Lr: &LabelReflector{
@@ -139,7 +139,7 @@ var (
 			},
 		},
 	}
-	expectedSimpleLabelReflector = recursiveLabelReflector{
+	expectedSimpleLabelReflector = label.RecursiveLabelReflector{
 		T:  reflect.TypeOf(simpleStats{}),
 		Ln: []string{"name"},
 		Lr: &LabelReflector{
@@ -148,7 +148,7 @@ var (
 			},
 			T: reflect.TypeOf(simpleStats{}),
 		},
-		Fields: map[int]*recursiveLabelReflector{
+		Fields: map[int]*label.RecursiveLabelReflector{
 			2: {
 				T: reflect.TypeOf(simpleBrokerStats{}),
 				Lr: &LabelReflector{
@@ -158,7 +158,7 @@ var (
 					},
 				},
 				Ln:     []string{"brokers_name", "name"},
-				Fields: map[int]*recursiveLabelReflector{},
+				Fields: map[int]*label.RecursiveLabelReflector{},
 			},
 		},
 	}
@@ -182,7 +182,7 @@ func TestMakeLabelGenerator(t *testing.T) {
 }
 
 func TestSimpleLabelReflector(t *testing.T) {
-	rlr := recursiveLabelReflector{}
+	rlr := label.RecursiveLabelReflector{}
 	fillLabels(reflect.TypeOf(simpleStats{}), &rlr, "", nil)
 	d := cmp.Diff(rlr, expectedSimpleLabelReflector, cmp.Comparer(internal.CompareType))
 	if d != "" {
@@ -191,7 +191,7 @@ func TestSimpleLabelReflector(t *testing.T) {
 }
 
 func TestRecursive(t *testing.T) {
-	rlr := recursiveLabelReflector{}
+	rlr := label.RecursiveLabelReflector{}
 	fillLabels(reflect.TypeOf(typed.Stats{}), &rlr, "", nil)
 	d := cmp.Diff(rlr, expectedRecursive, cmp.Comparer(internal.CompareType))
 	if d != "" {
