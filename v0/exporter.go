@@ -34,11 +34,6 @@ func NewExporter(r prometheus.Registerer) *exporter {
 	}
 }
 
-func (e *exporter) UpdateWithStats(stats *kafka.Stats) error {
-	s := stats.String()
-	return e.UpdateWithStatString(s)
-}
-
 func (e *exporter) UpdateWithStatString(stats string) error {
 	err := json.Unmarshal([]byte(stats), &e.stats)
 	if err != nil {
