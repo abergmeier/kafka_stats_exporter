@@ -6,12 +6,10 @@ import (
 
 	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/kafka/typed"
 	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/prometheus/gen"
-	"github.com/confluentinc/confluent-kafka-go/kafka"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
 type Exporter interface {
-	UpdateWithStats(stats *kafka.Stats) error
 	UpdateWithStatString(stats string) error
 }
 
@@ -24,7 +22,7 @@ type exporter struct {
 	}
 }
 
-func NewExporter(r prometheus.Registerer) *exporter {
+func NewExporter(r prometheus.Registerer) Exporter {
 	return &exporter{
 		registerer: r,
 		cachedUpdater: map[reflect.Type]struct {
