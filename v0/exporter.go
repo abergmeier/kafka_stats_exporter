@@ -1,4 +1,4 @@
-package pkg
+package v0
 
 import (
 	"encoding/json"
@@ -10,7 +10,12 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-type Exporter struct {
+type Exporter interface {
+	UpdateWithStats(stats *kafka.Stats) error
+	UpdateWithStatString(stats string) error
+}
+
+type exporter struct {
 	stats         typed.Stats
 	cachedUpdater map[reflect.Type]struct {
 		collector prometheus.Collector
@@ -18,12 +23,21 @@ type Exporter struct {
 	}
 }
 
-func (e *Exporter) UpdateWithStats(stats *kafka.Stats) error {
+func NewExporter() *exporter {
+	return &exporter{
+		cachedUpdater: map[reflect.Type]struct {
+			collector prometheus.Collector
+			updater   gen.Updater
+		}{},
+	}
+}
+
+func (e *exporter) UpdateWithStats(stats *kafka.Stats) error {
 	s := stats.String()
 	return e.UpdateWithStatString(s)
 }
 
-func (e *Exporter) UpdateWithStatString(stats string) error {
+func (e *exporter) UpdateWithStatString(stats string) error {
 	err := json.Unmarshal([]byte(stats), &e.stats)
 	if err != nil {
 		return err
