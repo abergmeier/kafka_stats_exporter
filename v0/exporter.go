@@ -16,6 +16,7 @@ type Exporter interface {
 }
 
 type exporter struct {
+	registerer    prometheus.Registerer
 	stats         typed.Stats
 	cachedUpdater map[reflect.Type]struct {
 		collector prometheus.Collector
@@ -23,8 +24,9 @@ type exporter struct {
 	}
 }
 
-func NewExporter() *exporter {
+func NewExporter(r prometheus.Registerer) *exporter {
 	return &exporter{
+		registerer: r,
 		cachedUpdater: map[reflect.Type]struct {
 			collector prometheus.Collector
 			updater   gen.Updater
@@ -47,6 +49,10 @@ func (e *exporter) UpdateWithStatString(stats string) error {
 	ce, ok := e.cachedUpdater[t]
 	if !ok {
 		ce.collector, ce.updater = gen.NewRecursiveMetricsFromTags(e.stats)
+		err := e.registerer.Register(ce.collector)
+		if err != nil {
+			return err
+		}
 		e.cachedUpdater[t] = ce
 	}
 
