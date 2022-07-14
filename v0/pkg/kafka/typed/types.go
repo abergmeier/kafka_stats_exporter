@@ -165,3 +165,48 @@ type WindowStats struct {
 	P99_99     int `json:"p99_99"     kpromcol:"GaugeVec,99.99th percentile"`
 	Outofrange int `json:"outofrange" kpromcol:"GaugeVec,Values skipped due to out of histogram range"`
 }
+
+func (s *Stats) DeepCopy() Stats {
+
+	ret := *s
+	ret.Brokers = make(map[BrokerName]BrokerStats, len(s.Brokers))
+	ret.Topics = make(map[TopicName]TopicStats, len(s.Topics))
+
+	for k, v := range s.Brokers {
+		ret.Brokers[k] = v.DeepCopy()
+	}
+
+	for k, v := range s.Topics {
+		ret.Topics[k] = v.DeepCopy()
+	}
+	return ret
+}
+
+func (bs *BrokerStats) DeepCopy() BrokerStats {
+
+	ret := *bs
+	ret.Req = make(map[RequestName]RequestsSent, len(bs.Req))
+	ret.Toppars = make(map[TopicAndPartition]TopparsStats, len(bs.Toppars))
+
+	for k, v := range bs.Req {
+		ret.Req[k] = v
+	}
+
+	for k, v := range bs.Toppars {
+		ret.Toppars[k] = v
+	}
+
+	return ret
+}
+
+func (ts *TopicStats) DeepCopy() TopicStats {
+
+	ret := *ts
+	ret.Partitions = make(map[PartitionId]PartitionStats, len(ts.Partitions))
+
+	for k, v := range ts.Partitions {
+		ret.Partitions[k] = v
+	}
+
+	return ret
+}

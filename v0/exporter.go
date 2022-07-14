@@ -11,6 +11,8 @@ import (
 
 type Exporter interface {
 	UpdateWithStatString(stats string) error
+	// Returns the last updated stats
+	Stats() *typed.Stats
 }
 
 type exporter struct {
@@ -51,4 +53,8 @@ func (e *exporter) UpdateWithStatString(stats string) error {
 
 	ce.updater.Update(e.stats, prometheus.Labels{})
 	return nil
+}
+
+func (e *exporter) Stats() *typed.Stats {
+	return &e.stats
 }
