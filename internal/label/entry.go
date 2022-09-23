@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/abergmeier/kafka_stats_exporter/internal/assert"
+	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/prometheus/types"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
@@ -20,9 +21,6 @@ type KeyValueGenerator struct {
 	T          reflect.Type
 }
 
-//Names are all possible names for Labels
-type Names = []string
-
 //LabelReflector uses a struct values to extract Labels
 type Reflector struct {
 	Generators []KeyValueGenerator
@@ -31,7 +29,7 @@ type Reflector struct {
 
 type RecursiveReflector struct {
 	Lr     *Reflector
-	Ln     Names
+	Ln     types.LabelNames
 	Fields map[int]*RecursiveReflector
 	T      reflect.Type
 }
