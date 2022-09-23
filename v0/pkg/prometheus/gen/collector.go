@@ -5,6 +5,7 @@ import (
 
 	"github.com/abergmeier/kafka_stats_exporter/internal/collector"
 	"github.com/abergmeier/kafka_stats_exporter/internal/label"
+	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/prometheus/types"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
@@ -20,7 +21,7 @@ func NewRecursiveMetricsFromTags(tagged interface{}) (prometheus.Collector, Upda
 	}
 
 	rlr := label.RecursiveReflector{}
-	fillLabels(t, &rlr, "", nil)
+	fillLabels(t, &rlr, "", types.LabelNames{})
 
 	cs := &collector.Collectors{}
 	cs.Fill(t, &rlr, "")

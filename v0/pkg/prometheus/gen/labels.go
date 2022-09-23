@@ -2,15 +2,13 @@ package gen
 
 import (
 	"reflect"
-	"sort"
 
 	"github.com/abergmeier/kafka_stats_exporter/internal/label"
+	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/prometheus/types"
 )
 
-//LabelNames are all possible names for Labels
-type LabelNames = label.Names
-
-type labelNameCache map[reflect.Type]LabelNames
+// Kept for compat only.
+type LabelNames = types.LabelNames
 
 type LabelReflector = label.Reflector
 
@@ -19,7 +17,7 @@ type LabelReflector = label.Reflector
 // extract Labels from the same struct type.
 // Internally LabelReflector specifically looks at field tag `kpromlbl` for
 // Label names.
-func MakeLabelReflector(t reflect.Type, parent string, parentLabelNames LabelNames) (*LabelReflector, LabelNames) {
+func MakeLabelReflector(t reflect.Type, parent string, parentLabelNames types.LabelNames) (*LabelReflector, types.LabelNames) {
 
 	switch t.Kind() {
 	case reflect.Struct:
@@ -28,9 +26,10 @@ func MakeLabelReflector(t reflect.Type, parent string, parentLabelNames LabelNam
 	}
 
 	var generators []label.KeyValueGenerator
-	labelNames := LabelNames{}
-	for _, ln := range parentLabelNames {
-		labelNames = append(labelNames, ln)
+	labelNames := types.LabelNames{}
+	err := labelNames.AddLabelNames(&parentLabelNames)
+	if err != nil {
+		panic(err)
 	}
 
 	fields := reflect.VisibleFields(t)
@@ -46,7 +45,10 @@ func MakeLabelReflector(t reflect.Type, parent string, parentLabelNames LabelNam
 			key = parent + "_" + tag
 		}
 
-		labelNames = append(labelNames, key)
+		err := labelNames.AddStrings(key)
+		if err != nil {
+			panic(err)
+		}
 		generators = append(generators, label.KeyValueGenerator{
 			FieldIndex: i,
 			FieldType:  f.Type,
@@ -55,14 +57,14 @@ func MakeLabelReflector(t reflect.Type, parent string, parentLabelNames LabelNam
 		})
 	}
 
-	sort.Strings(labelNames)
+	labelNames.Sort()
 	return &LabelReflector{
 		Generators: generators,
 		T:          t,
 	}, labelNames
 }
 
-func fillLabels(t reflect.Type, rlr *label.RecursiveReflector, parent string, parentLabelNames LabelNames) {
+func fillLabels(t reflect.Type, rlr *label.RecursiveReflector, parent string, parentLabelNames types.LabelNames) {
 
 	rlr.T = t
 

@@ -2,12 +2,12 @@ package gen
 
 import (
 	"reflect"
-	"sort"
 	"testing"
 
 	"github.com/abergmeier/kafka_stats_exporter/internal"
 	"github.com/abergmeier/kafka_stats_exporter/internal/label"
 	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/kafka/typed"
+	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/prometheus/types"
 	"github.com/google/go-cmp/cmp"
 	"github.com/prometheus/client_golang/prometheus"
 )
@@ -18,11 +18,9 @@ var (
 		"client_id": "MyClientId",
 		"type":      "MyType",
 	}
-	expectedLabelNames = LabelNames{
-		"client_id", "name", "type",
-	}
-	expectedRecursive = label.RecursiveReflector{
-		Ln: []string{"client_id", "name", "type"},
+	expectedLabelNames = types.LabelNames{}
+	expectedRecursive  = label.RecursiveReflector{
+		Ln: testLabelNames("client_id", "name", "type"),
 		T:  reflect.TypeOf(typed.Stats{}),
 		Lr: &LabelReflector{
 			T: reflect.TypeOf(typed.Stats{}),
@@ -34,30 +32,30 @@ var (
 		},
 		Fields: map[int]*label.RecursiveReflector{
 			21: {
-				Ln: []string{"brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"},
+				Ln: testLabelNames("brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"),
 				T:  reflect.TypeOf(typed.BrokerStats{}),
 				Fields: map[int]*label.RecursiveReflector{
 					27: {
 						Fields: map[int]*label.RecursiveReflector{},
-						Ln:     []string{"brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"},
+						Ln:     testLabelNames("brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"),
 						Lr:     &LabelReflector{T: reflect.TypeOf(typed.WindowStats{})},
 						T:      reflect.TypeOf(typed.WindowStats{}),
 					},
 					28: {
 						Fields: map[int]*label.RecursiveReflector{},
-						Ln:     []string{"brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"},
+						Ln:     testLabelNames("brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"),
 						Lr:     &LabelReflector{T: reflect.TypeOf(typed.WindowStats{})},
 						T:      reflect.TypeOf(typed.WindowStats{}),
 					},
 					29: {
 						Fields: map[int]*label.RecursiveReflector{},
-						Ln:     []string{"brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"},
+						Ln:     testLabelNames("brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"),
 						Lr:     &LabelReflector{T: reflect.TypeOf(typed.WindowStats{})},
 						T:      reflect.TypeOf(typed.WindowStats{}),
 					},
 					30: {
 						Fields: map[int]*label.RecursiveReflector{},
-						Ln:     []string{"brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"},
+						Ln:     testLabelNames("brokers_name", "brokers_nodeid", "brokers_nodename", "brokers_source", "brokers_state", "client_id", "name", "type"),
 						Lr:     &LabelReflector{T: reflect.TypeOf(typed.WindowStats{})},
 						T:      reflect.TypeOf(typed.WindowStats{}),
 					},
@@ -74,7 +72,7 @@ var (
 				},
 			},
 			22: {
-				Ln: []string{"client_id", "name", "topics_topic", "type"},
+				Ln: testLabelNames("client_id", "name", "topics_topic", "type"),
 				T:  reflect.TypeOf(typed.TopicStats{}),
 				Lr: &LabelReflector{
 					T: reflect.TypeOf(typed.TopicStats{}),
@@ -85,19 +83,19 @@ var (
 				Fields: map[int]*label.RecursiveReflector{
 					3: {
 						Fields: map[int]*label.RecursiveReflector{},
-						Ln:     []string{"client_id", "name", "topics_topic", "type"},
+						Ln:     testLabelNames("client_id", "name", "topics_topic", "type"),
 						Lr:     &LabelReflector{T: reflect.TypeOf(typed.WindowStats{})},
 						T:      reflect.TypeOf(typed.WindowStats{}),
 					},
 					4: {
 						Fields: map[int]*label.RecursiveReflector{},
-						Ln:     []string{"client_id", "name", "topics_topic", "type"},
+						Ln:     testLabelNames("client_id", "name", "topics_topic", "type"),
 						Lr:     &LabelReflector{T: reflect.TypeOf(typed.WindowStats{})},
 						T:      reflect.TypeOf(typed.WindowStats{}),
 					},
 					5: {
 						Fields: map[int]*label.RecursiveReflector{},
-						Ln:     []string{"client_id", "name", "topics_partitions_broker", "topics_partitions_fetch_state", "topics_partitions_leader", "topics_partitions_partition", "topics_topic", "type"},
+						Ln:     testLabelNames("client_id", "name", "topics_partitions_broker", "topics_partitions_fetch_state", "topics_partitions_leader", "topics_partitions_partition", "topics_topic", "type"),
 						T:      reflect.TypeOf(typed.PartitionStats{}),
 						Lr: &LabelReflector{
 							T: reflect.TypeOf(typed.PartitionStats{}),
@@ -113,7 +111,7 @@ var (
 			},
 			23: {
 				Fields: map[int]*label.RecursiveReflector{},
-				Ln:     []string{"cgrp_join_state", "cgrp_rebalance_reason", "cgrp_state", "client_id", "name", "type"},
+				Ln:     testLabelNames("cgrp_join_state", "cgrp_rebalance_reason", "cgrp_state", "client_id", "name", "type"),
 				T:      reflect.TypeOf(typed.CgrpStats{}),
 				Lr: &LabelReflector{
 					T: reflect.TypeOf(typed.CgrpStats{}),
@@ -126,7 +124,7 @@ var (
 			},
 			24: {
 				Fields: map[int]*label.RecursiveReflector{},
-				Ln:     []string{"client_id", "eos_idemp_state", "eos_producer_id", "eos_txn_state", "name", "type"},
+				Ln:     testLabelNames("client_id", "eos_idemp_state", "eos_producer_id", "eos_txn_state", "name", "type"),
 				T:      reflect.TypeOf(typed.EosStats{}),
 				Lr: &LabelReflector{
 					T: reflect.TypeOf(typed.EosStats{}),
@@ -141,7 +139,7 @@ var (
 	}
 	expectedSimpleLabelReflector = label.RecursiveReflector{
 		T:  reflect.TypeOf(simpleStats{}),
-		Ln: []string{"name"},
+		Ln: testLabelNames("name"),
 		Lr: &LabelReflector{
 			Generators: []label.KeyValueGenerator{
 				{FieldIndex: 0, FieldType: reflect.TypeOf(""), LabelName: "name", T: reflect.TypeOf(simpleStats{})},
@@ -157,16 +155,23 @@ var (
 						{FieldIndex: 0, FieldType: reflect.TypeOf(""), LabelName: "brokers_name", T: reflect.TypeOf(simpleBrokerStats{})},
 					},
 				},
-				Ln:     []string{"brokers_name", "name"},
+				Ln:     testLabelNames("brokers_name", "name"),
 				Fields: map[int]*label.RecursiveReflector{},
 			},
 		},
 	}
 )
 
+func init() {
+	err := expectedLabelNames.AddStrings("client_id", "name", "type")
+	if err != nil {
+		panic(err)
+	}
+}
+
 func TestMakeLabelReflector(t *testing.T) {
 	tpe := reflect.TypeOf(typed.Stats{})
-	lg, lns := MakeLabelReflector(tpe, "", nil)
+	lg, lns := MakeLabelReflector(tpe, "", types.LabelNames{})
 	ls := lg.LabelsForValue(typed.Stats{
 		Name:     "MyName",
 		ClientId: "MyClientId",
@@ -175,7 +180,7 @@ func TestMakeLabelReflector(t *testing.T) {
 	if !reflect.DeepEqual(ls, expectedLabels) {
 		t.Fatal("Invalid labels generated:", ls)
 	}
-	sort.Strings(lns)
+	lns.Sort()
 	if !reflect.DeepEqual(lns, expectedLabelNames) {
 		t.Fatal("Invalid label names generated:", lns)
 	}
@@ -183,7 +188,7 @@ func TestMakeLabelReflector(t *testing.T) {
 
 func TestLabelReflectorSimple(t *testing.T) {
 	rlr := label.RecursiveReflector{}
-	fillLabels(reflect.TypeOf(simpleStats{}), &rlr, "", nil)
+	fillLabels(reflect.TypeOf(simpleStats{}), &rlr, "", types.LabelNames{})
 	d := cmp.Diff(rlr, expectedSimpleLabelReflector, cmp.Comparer(internal.CompareType))
 	if d != "" {
 		t.Fatal("Diff", d)
@@ -192,9 +197,18 @@ func TestLabelReflectorSimple(t *testing.T) {
 
 func TestLabelReflectorFull(t *testing.T) {
 	rlr := label.RecursiveReflector{}
-	fillLabels(reflect.TypeOf(typed.Stats{}), &rlr, "", nil)
+	fillLabels(reflect.TypeOf(typed.Stats{}), &rlr, "", types.LabelNames{})
 	d := cmp.Diff(rlr, expectedRecursive, cmp.Comparer(internal.CompareType))
 	if d != "" {
 		t.Fatal("Diff", d)
 	}
+}
+
+func testLabelNames(names ...string) types.LabelNames {
+	lns := types.LabelNames{}
+	err := lns.AddStrings(names...)
+	if err != nil {
+		panic(err)
+	}
+	return lns
 }

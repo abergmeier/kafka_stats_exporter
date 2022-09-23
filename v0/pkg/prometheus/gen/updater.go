@@ -69,7 +69,7 @@ func (u *updater) update(v interface{}, labels prometheus.Labels) {
 
 func updateMapped(d *collector.DynamicMap, rlr *label.RecursiveReflector, fv reflect.Value) {
 
-	var keysToDelete map[reflect.Value]struct{}
+	keysToDelete := make(map[reflect.Value]struct{}, len(d.Mapped))
 	for k := range d.Mapped {
 		keysToDelete[k] = struct{}{}
 	}

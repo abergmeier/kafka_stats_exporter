@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/abergmeier/kafka_stats_exporter/internal/label"
+	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/prometheus/types"
 	"github.com/iancoleman/strcase"
 	"github.com/prometheus/client_golang/prometheus"
 )
@@ -30,7 +30,7 @@ type GeneratedUpdator struct {
 	Last      int64
 }
 
-func makeGenerated(i int, tag string, f reflect.StructField, parent string, labelNames label.Names) *GeneratedUpdator {
+func makeGenerated(i int, tag string, f reflect.StructField, parent string, labelNames types.LabelNames) *GeneratedUpdator {
 	prom := strings.SplitN(tag, ",", 2)
 	help, err := url.QueryUnescape(prom[1])
 	if err != nil {
@@ -47,7 +47,7 @@ func makeGenerated(i int, tag string, f reflect.StructField, parent string, labe
 		counterVec := prometheus.NewCounterVec(prometheus.CounterOpts{
 			Name: namePrefix + strcase.ToSnake(f.Name) + "_total",
 			Help: help,
-		}, labelNames)
+		}, labelNames.Strings())
 		return &GeneratedUpdator{
 			Collector: counterVec,
 			Index:     i,
@@ -64,7 +64,7 @@ func makeGenerated(i int, tag string, f reflect.StructField, parent string, labe
 		gaugeVec := prometheus.NewGaugeVec(prometheus.GaugeOpts{
 			Name: namePrefix + strcase.ToSnake(f.Name),
 			Help: help,
-		}, labelNames)
+		}, labelNames.Strings())
 		return &GeneratedUpdator{
 			Collector: gaugeVec,
 			Index:     i,
