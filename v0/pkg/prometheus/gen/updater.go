@@ -3,6 +3,7 @@ package gen
 import (
 	"reflect"
 	"strconv"
+	"strings"
 
 	"github.com/abergmeier/kafka_stats_exporter/internal/assert"
 	"github.com/abergmeier/kafka_stats_exporter/internal/collector"
@@ -89,6 +90,7 @@ func updateMapped(d *collector.DynamicMap, rlr *label.RecursiveReflector, fv ref
 		} else {
 			keyString = rk.String()
 		}
+		keyString = strings.Replace(keyString, ".", "_", -1)
 		vt := iter.Value().Type()
 		cu := &collector.Collectors{}
 		if d.StructParent == "" {
