@@ -7,16 +7,18 @@ import (
 	"github.com/abergmeier/kafka_stats_exporter/internal/assert"
 	"github.com/abergmeier/kafka_stats_exporter/internal/collector"
 	"github.com/abergmeier/kafka_stats_exporter/internal/label"
+	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/prometheus/types"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-//Updater allows for updating prometheus Metrics from Value
+// Updater allows for updating prometheus Metrics from Value
 type Updater interface {
 	Update(v interface{}, labels prometheus.Labels)
 }
 
 type updater struct {
-	c *collector.Collectors
+	c                  *collector.Collectors
+	labelNameTransform types.LabelNameTransformer
 }
 
 func (u *updater) Update(v interface{}, labels prometheus.Labels) {
@@ -25,7 +27,7 @@ func (u *updater) Update(v interface{}, labels prometheus.Labels) {
 		newLabels[k] = v
 	}
 	for k, v := range u.c.Rlr.Lr.LabelsForValue(v) {
-		newLabels[k] = v
+		newLabels[u.labelNameTransform(k)] = v
 	}
 
 	u.update(v, newLabels)
@@ -61,7 +63,8 @@ func (u *updater) update(v interface{}, labels prometheus.Labels) {
 			aliased := mk.Convert(fv.Type().Key())
 			mv := fv.MapIndex(aliased)
 			(&updater{
-				c: mc,
+				c:                  mc,
+				labelNameTransform: u.labelNameTransform,
 			}).Update(mv.Interface(), labels)
 		}
 	}

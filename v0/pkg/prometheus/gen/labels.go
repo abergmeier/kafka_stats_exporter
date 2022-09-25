@@ -17,7 +17,19 @@ type LabelReflector = label.Reflector
 // extract Labels from the same struct type.
 // Internally LabelReflector specifically looks at field tag `kpromlbl` for
 // Label names.
-func MakeLabelReflector(t reflect.Type, parent string, parentLabelNames types.LabelNames) (*LabelReflector, types.LabelNames) {
+func MakeLabelReflector(t reflect.Type, parent string, parentLabelNames types.LabelNames) (*LabelReflector, LabelNames) {
+	return MakeLabelReflectorWithTransform(t, parent, parentLabelNames, func(value string) (labelName string) {
+		return value
+	})
+}
+
+// MakeLabelReflectorWithTransform uses reflection Information to build LabelReflector.
+// for structs. LabelReflector can then later on be used to performantly
+// extract Labels from the same struct type.
+// Internally LabelReflector specifically looks at field tag `kpromlbl` for
+// Label names.
+// Also support transformation of LabelNames.
+func MakeLabelReflectorWithTransform(t reflect.Type, parent string, parentLabelNames types.LabelNames, transform types.LabelNameTransformer) (*LabelReflector, LabelNames) {
 
 	switch t.Kind() {
 	case reflect.Struct:
@@ -45,7 +57,7 @@ func MakeLabelReflector(t reflect.Type, parent string, parentLabelNames types.La
 			key = parent + "_" + tag
 		}
 
-		err := labelNames.AddStrings(key)
+		err := labelNames.AddStrings(transform(key))
 		if err != nil {
 			panic(err)
 		}
@@ -64,11 +76,11 @@ func MakeLabelReflector(t reflect.Type, parent string, parentLabelNames types.La
 	}, labelNames
 }
 
-func fillLabels(t reflect.Type, rlr *label.RecursiveReflector, parent string, parentLabelNames types.LabelNames) {
+func fillLabels(t reflect.Type, rlr *label.RecursiveReflector, parent string, parentLabelNames types.LabelNames, transform types.LabelNameTransformer) {
 
 	rlr.T = t
 
-	rlr.Lr, rlr.Ln = MakeLabelReflector(t, parent, parentLabelNames)
+	rlr.Lr, rlr.Ln = MakeLabelReflectorWithTransform(t, parent, parentLabelNames, transform)
 	rlr.Fields = map[int]*label.RecursiveReflector{}
 
 	for _, ft := range reflect.VisibleFields(t) {
@@ -82,9 +94,9 @@ func fillLabels(t reflect.Type, rlr *label.RecursiveReflector, parent string, pa
 			frlr := label.RecursiveReflector{}
 			rlr.Fields[ft.Index[0]] = &frlr
 			if parent == "" {
-				fillLabels(ft.Type.Elem(), &frlr, tag, rlr.Ln)
+				fillLabels(ft.Type.Elem(), &frlr, tag, rlr.Ln, transform)
 			} else {
-				fillLabels(ft.Type.Elem(), &frlr, parent+"_"+tag, rlr.Ln)
+				fillLabels(ft.Type.Elem(), &frlr, parent+"_"+tag, rlr.Ln, transform)
 			}
 		}
 		tag = ft.Tag.Get("kprompnt")
@@ -97,9 +109,9 @@ func fillLabels(t reflect.Type, rlr *label.RecursiveReflector, parent string, pa
 			frlr := label.RecursiveReflector{}
 			rlr.Fields[ft.Index[0]] = &frlr
 			if parent == "" {
-				fillLabels(ft.Type, &frlr, tag, rlr.Ln)
+				fillLabels(ft.Type, &frlr, tag, rlr.Ln, transform)
 			} else {
-				fillLabels(ft.Type, &frlr, parent+"_"+tag, rlr.Ln)
+				fillLabels(ft.Type, &frlr, parent+"_"+tag, rlr.Ln, transform)
 			}
 		}
 	}
