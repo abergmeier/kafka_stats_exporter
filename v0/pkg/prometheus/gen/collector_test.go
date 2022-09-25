@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io"
 	"os"
+	"strings"
 	"testing"
 
 	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/kafka/typed"
@@ -12,9 +13,9 @@ import (
 )
 
 var (
-	simple                       = simpleStats{}
-	full                         = typed.Stats{}
-	expectedFull, expectedSimple io.Reader
+	simple                                                     = simpleStats{}
+	full                                                       = typed.Stats{}
+	expectedFull, expectedSimple, expectedSimpleTransformation io.Reader
 )
 
 type simpleStats struct {
@@ -64,8 +65,27 @@ func init_simple() {
 	}
 }
 
+func init_simple_transformation() {
+	f, err := os.Open("testdata/simple.json")
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+	dec := json.NewDecoder(f)
+	err = dec.Decode(&simple)
+	if err != nil {
+		panic(err)
+	}
+
+	expectedSimpleTransformation, err = os.Open("testdata/simple_transformation_expected.txt")
+	if err != nil {
+		panic(err)
+	}
+}
+
 func init() {
 	init_simple()
+	init_simple_transformation()
 	init_full()
 }
 
@@ -78,6 +98,19 @@ func TestUpdateSimple(t *testing.T) {
 	col, upd := NewRecursiveMetricsFromTags(simpleStats{})
 	upd.Update(&simple, prometheus.Labels{})
 	err := testutil.CollectAndCompare(col, expectedSimple)
+	if err != nil {
+		t.Fatal("CollectAndCompare failed:", err)
+	}
+}
+
+func TestUpdateSimpleTransformation(t *testing.T) {
+	col, upd := NewRecursiveMetricsFromTags(simpleStats{}, WithLabelNameTransform(
+		func(value string) (labelName string) {
+			return strings.ReplaceAll(value, "_", "")
+		},
+	))
+	upd.Update(&simple, prometheus.Labels{})
+	err := testutil.CollectAndCompare(col, expectedSimpleTransformation)
 	if err != nil {
 		t.Fatal("CollectAndCompare failed:", err)
 	}

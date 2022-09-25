@@ -1,0 +1,6 @@
+# HELP brokers_localhost_9092_2_rxbytes_total Total number of bytes received
+# TYPE brokers_localhost_9092_2_rxbytes_total counter
+brokers_localhost_9092_2_rxbytes_total{brokersname="localhost:9092/2",name="rdkafka#producer-1"} 15708
+# HELP rx_bytes_total Total number of bytes received from Kafka brokers
+# TYPE rx_bytes_total counter
+rx_bytes_total{name="rdkafka#producer-1"} 31084

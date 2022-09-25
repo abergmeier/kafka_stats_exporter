@@ -188,7 +188,7 @@ func TestMakeLabelReflector(t *testing.T) {
 
 func TestLabelReflectorSimple(t *testing.T) {
 	rlr := label.RecursiveReflector{}
-	fillLabels(reflect.TypeOf(simpleStats{}), &rlr, "", types.LabelNames{})
+	fillLabels(reflect.TypeOf(simpleStats{}), &rlr, "", types.LabelNames{}, func(value string) (labelName string) { return value })
 	d := cmp.Diff(rlr, expectedSimpleLabelReflector, cmp.Comparer(internal.CompareType))
 	if d != "" {
 		t.Fatal("Diff", d)
@@ -197,7 +197,7 @@ func TestLabelReflectorSimple(t *testing.T) {
 
 func TestLabelReflectorFull(t *testing.T) {
 	rlr := label.RecursiveReflector{}
-	fillLabels(reflect.TypeOf(typed.Stats{}), &rlr, "", types.LabelNames{})
+	fillLabels(reflect.TypeOf(typed.Stats{}), &rlr, "", types.LabelNames{}, func(value string) (labelName string) { return value })
 	d := cmp.Diff(rlr, expectedRecursive, cmp.Comparer(internal.CompareType))
 	if d != "" {
 		t.Fatal("Diff", d)
