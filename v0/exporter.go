@@ -3,10 +3,15 @@ package v0
 import (
 	"encoding/json"
 	"reflect"
+	"regexp"
 
 	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/kafka/typed"
 	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/prometheus/gen"
 	"github.com/prometheus/client_golang/prometheus"
+)
+
+var (
+	labelNameExp = regexp.MustCompile("(^[^a-zA-Z_])|([^a-zA-Z0-9_]+)")
 )
 
 type Exporter interface {
@@ -43,7 +48,11 @@ func (e *exporter) UpdateWithStatString(stats string) error {
 	t := reflect.TypeOf(e.stats)
 	ce, ok := e.cachedUpdater[t]
 	if !ok {
-		ce.collector, ce.updater = gen.NewRecursiveMetricsFromTags(e.stats)
+		ce.collector, ce.updater = gen.NewRecursiveMetricsFromTags(e.stats, gen.WithMetricNameTransform(
+			func(value string) (labelName string) {
+				return string(labelNameExp.ReplaceAllString(value, "_"))
+			},
+		))
 		err := e.registerer.Register(ce.collector)
 		if err != nil {
 			return err

@@ -17,8 +17,9 @@ type Updater interface {
 }
 
 type updater struct {
-	c                  *collector.Collectors
-	labelNameTransform types.LabelNameTransformer
+	c                   *collector.Collectors
+	labelNameTransform  types.LabelNameTransformer
+	metricNameTransform types.MetricNameTransformer
 }
 
 func (u *updater) Update(v interface{}, labels prometheus.Labels) {
@@ -55,7 +56,7 @@ func (u *updater) update(v interface{}, labels prometheus.Labels) {
 	for _, m := range u.c.Maps {
 		fv := rv.FieldByIndex([]int{m.IndexInStruct})
 		assert.AssertMap(fv)
-		updateMapped(&m, u.c.Rlr.Fields[m.IndexInStruct], fv)
+		updateMapped(&m, u.c.Rlr.Fields[m.IndexInStruct], fv, u.metricNameTransform)
 		for mk, mc := range m.Mapped {
 			// While we only support strings and ints we usually use an alias to
 			// make semantics clear. Thus we need to convert from string or int
@@ -63,14 +64,15 @@ func (u *updater) update(v interface{}, labels prometheus.Labels) {
 			aliased := mk.Convert(fv.Type().Key())
 			mv := fv.MapIndex(aliased)
 			(&updater{
-				c:                  mc,
-				labelNameTransform: u.labelNameTransform,
+				c:                   mc,
+				labelNameTransform:  u.labelNameTransform,
+				metricNameTransform: u.metricNameTransform,
 			}).Update(mv.Interface(), labels)
 		}
 	}
 }
 
-func updateMapped(d *collector.DynamicMap, rlr *label.RecursiveReflector, fv reflect.Value) {
+func updateMapped(d *collector.DynamicMap, rlr *label.RecursiveReflector, fv reflect.Value, metricNameTransform types.MetricNameTransformer) {
 
 	keysToDelete := make(map[reflect.Value]struct{}, len(d.Mapped))
 	for k := range d.Mapped {
@@ -95,9 +97,9 @@ func updateMapped(d *collector.DynamicMap, rlr *label.RecursiveReflector, fv ref
 		vt := iter.Value().Type()
 		cu := &collector.Collectors{}
 		if d.StructParent == "" {
-			cu.Fill(vt, rlr, d.FieldName+"_"+keyString)
+			cu.Fill(vt, rlr, d.FieldName+"_"+keyString, metricNameTransform)
 		} else {
-			cu.Fill(vt, rlr, d.StructParent+"_"+d.FieldName+"_"+keyString)
+			cu.Fill(vt, rlr, d.StructParent+"_"+d.FieldName+"_"+keyString, metricNameTransform)
 		}
 		// We need new map entry
 		d.Mapped[rk] = cu

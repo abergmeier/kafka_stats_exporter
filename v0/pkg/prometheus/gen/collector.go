@@ -25,8 +25,21 @@ func WithLabelNameTransform(fun types.LabelNameTransformer) RecursiveMetricsOpti
 	}
 }
 
+// WithMetricNameTransform creates an Option for transforming Prometheus metric names
+// Especially useful since Prometheus has a very limited range of characters allowed for
+// metric names.
+func WithMetricNameTransform(fun types.MetricNameTransformer) RecursiveMetricsOption {
+	return &recursiveMetricNameTransform{
+		fun: fun,
+	}
+}
+
 type recursiveMetricsLabelNameTransform struct {
 	fun types.LabelNameTransformer
+}
+
+type recursiveMetricNameTransform struct {
+	fun types.MetricNameTransformer
 }
 
 // NewRecursiveMetricsFromTags builds Metrics recursively for the type of `tagged`.
@@ -40,25 +53,43 @@ func NewRecursiveMetricsFromTags(tagged interface{}, opts ...RecursiveMetricsOpt
 		t = t.Elem()
 	}
 
-	transforms := []types.LabelNameTransformer{}
+	labelNameTransforms := []types.LabelNameTransformer{}
+	metricNameTransforms := []types.MetricNameTransformer{}
 	for _, opt := range opts {
 		switch trans := opt.(type) {
 		case *recursiveMetricsLabelNameTransform:
-			transforms = append(transforms, trans.fun)
+			labelNameTransforms = append(labelNameTransforms, trans.fun)
+		case *recursiveMetricNameTransform:
+			metricNameTransforms = append(metricNameTransforms, trans.fun)
 		default:
 			panic(fmt.Sprintf("Unrecognized option %#v", opt))
 		}
 	}
 
-	var transform types.LabelNameTransformer
-	switch len(transforms) {
+	var labelNameTransform types.LabelNameTransformer
+	switch len(labelNameTransforms) {
 	case 0:
-		transform = func(value string) (labelName string) { return value }
+		labelNameTransform = func(value string) (labelName string) { return value }
 	case 1:
-		transform = transforms[0]
+		labelNameTransform = labelNameTransforms[0]
 	default:
-		transform = func(value string) (labelName string) {
-			for _, trans := range transforms {
+		labelNameTransform = func(value string) (labelName string) {
+			for _, trans := range labelNameTransforms {
+				value = trans(value)
+			}
+			return value
+		}
+	}
+
+	var metricNameTransform types.MetricNameTransformer
+	switch len(metricNameTransforms) {
+	case 0:
+		metricNameTransform = func(value string) (metricName string) { return value }
+	case 1:
+		metricNameTransform = metricNameTransforms[0]
+	default:
+		metricNameTransform = func(value string) (metricName string) {
+			for _, trans := range metricNameTransforms {
 				value = trans(value)
 			}
 			return value
@@ -66,13 +97,14 @@ func NewRecursiveMetricsFromTags(tagged interface{}, opts ...RecursiveMetricsOpt
 	}
 
 	rlr := label.RecursiveReflector{}
-	fillLabels(t, &rlr, "", types.LabelNames{}, transform)
+	fillLabels(t, &rlr, "", types.LabelNames{}, labelNameTransform)
 
 	cs := &collector.Collectors{}
-	cs.Fill(t, &rlr, "")
+	cs.Fill(t, &rlr, "", metricNameTransform)
 	u := &updater{
-		c:                  cs,
-		labelNameTransform: transform,
+		c:                   cs,
+		labelNameTransform:  labelNameTransform,
+		metricNameTransform: metricNameTransform,
 	}
 	return cs, u
 }

@@ -1,195 +1,195 @@
 # HELP age_total Time since this client instance was created (microseconds)
 # TYPE age_total counter
 age_total{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9092_2_connects_total Number of connection attempts, including successful and failed, and name resolution failures.
-# TYPE brokers_localhost_9092_2_connects_total counter
-brokers_localhost_9092_2_connects_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9092_2_disconnects_total Number of disconnects (triggered by broker, network, load-balancer, etc.).
-# TYPE brokers_localhost_9092_2_disconnects_total counter
-brokers_localhost_9092_2_disconnects_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9092_2_outbuf_cnt Number of requests awaiting transmission to broker
-# TYPE brokers_localhost_9092_2_outbuf_cnt gauge
-brokers_localhost_9092_2_outbuf_cnt{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9092_2_outbuf_msg_cnt Number of messages awaiting transmission to broker
-# TYPE brokers_localhost_9092_2_outbuf_msg_cnt gauge
-brokers_localhost_9092_2_outbuf_msg_cnt{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9092_2_req_timeouts_total Total number of requests timed out
-# TYPE brokers_localhost_9092_2_req_timeouts_total counter
-brokers_localhost_9092_2_req_timeouts_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9092_2_rx_total Total number of responses received
-# TYPE brokers_localhost_9092_2_rx_total counter
-brokers_localhost_9092_2_rx_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 320
-# HELP brokers_localhost_9092_2_rxbytes_total Total number of bytes received
-# TYPE brokers_localhost_9092_2_rxbytes_total counter
-brokers_localhost_9092_2_rxbytes_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 15708
-# HELP brokers_localhost_9092_2_rxcorriderrs_total Total number of unmatched correlation ids in response (typically for timed out requests)
-# TYPE brokers_localhost_9092_2_rxcorriderrs_total counter
-brokers_localhost_9092_2_rxcorriderrs_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9092_2_rxerrs_total Total number of receive errors
-# TYPE brokers_localhost_9092_2_rxerrs_total counter
-brokers_localhost_9092_2_rxerrs_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9092_2_rxidle_total Microseconds since last socket receive (or -1 if no receives yet for current connection).
-# TYPE brokers_localhost_9092_2_rxidle_total counter
-brokers_localhost_9092_2_rxidle_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9092_2_rxpartial_total Total number of partial MessageSets received. The broker may return partial responses if the full MessageSet could not fit in the remaining Fetch response size.
-# TYPE brokers_localhost_9092_2_rxpartial_total counter
-brokers_localhost_9092_2_rxpartial_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9092_2_stateage Time since last broker state change (microseconds)
-# TYPE brokers_localhost_9092_2_stateage gauge
-brokers_localhost_9092_2_stateage{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 9.057234e+06
-# HELP brokers_localhost_9092_2_tx_total Total number of requests sent
-# TYPE brokers_localhost_9092_2_tx_total counter
-brokers_localhost_9092_2_tx_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 320
-# HELP brokers_localhost_9092_2_txbytes_total Total number of bytes sent
-# TYPE brokers_localhost_9092_2_txbytes_total counter
-brokers_localhost_9092_2_txbytes_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 8.4283332e+07
-# HELP brokers_localhost_9092_2_txerrs_total Total number of transmission errors
-# TYPE brokers_localhost_9092_2_txerrs_total counter
-brokers_localhost_9092_2_txerrs_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9092_2_txidle_total Microseconds since last socket send (or -1 if no sends yet for current connection).
-# TYPE brokers_localhost_9092_2_txidle_total counter
-brokers_localhost_9092_2_txidle_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9092_2_txretries_total Total number of request retries
-# TYPE brokers_localhost_9092_2_txretries_total counter
-brokers_localhost_9092_2_txretries_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9092_2_waitresp_cnt Number of requests in-flight to broker awaiting response
-# TYPE brokers_localhost_9092_2_waitresp_cnt gauge
-brokers_localhost_9092_2_waitresp_cnt{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9092_2_waitresp_msg_cnt Number of messages in-flight to broker awaiting response
-# TYPE brokers_localhost_9092_2_waitresp_msg_cnt gauge
-brokers_localhost_9092_2_waitresp_msg_cnt{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9092_2_wakeups_total Broker thread poll loop wakeups
-# TYPE brokers_localhost_9092_2_wakeups_total counter
-brokers_localhost_9092_2_wakeups_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 591067
-# HELP brokers_localhost_9092_2_zbuf_grow_total Total number of decompression buffer size increases
-# TYPE brokers_localhost_9092_2_zbuf_grow_total counter
-brokers_localhost_9092_2_zbuf_grow_total{brokers_name="localhost:9092/2",brokers_nodeid="2",brokers_nodename="localhost:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9093_3_connects_total Number of connection attempts, including successful and failed, and name resolution failures.
-# TYPE brokers_localhost_9093_3_connects_total counter
-brokers_localhost_9093_3_connects_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9093_3_disconnects_total Number of disconnects (triggered by broker, network, load-balancer, etc.).
-# TYPE brokers_localhost_9093_3_disconnects_total counter
-brokers_localhost_9093_3_disconnects_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9093_3_outbuf_cnt Number of requests awaiting transmission to broker
-# TYPE brokers_localhost_9093_3_outbuf_cnt gauge
-brokers_localhost_9093_3_outbuf_cnt{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9093_3_outbuf_msg_cnt Number of messages awaiting transmission to broker
-# TYPE brokers_localhost_9093_3_outbuf_msg_cnt gauge
-brokers_localhost_9093_3_outbuf_msg_cnt{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9093_3_req_timeouts_total Total number of requests timed out
-# TYPE brokers_localhost_9093_3_req_timeouts_total counter
-brokers_localhost_9093_3_req_timeouts_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9093_3_rx_total Total number of responses received
-# TYPE brokers_localhost_9093_3_rx_total counter
-brokers_localhost_9093_3_rx_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 310
-# HELP brokers_localhost_9093_3_rxbytes_total Total number of bytes received
-# TYPE brokers_localhost_9093_3_rxbytes_total counter
-brokers_localhost_9093_3_rxbytes_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 15104
-# HELP brokers_localhost_9093_3_rxcorriderrs_total Total number of unmatched correlation ids in response (typically for timed out requests)
-# TYPE brokers_localhost_9093_3_rxcorriderrs_total counter
-brokers_localhost_9093_3_rxcorriderrs_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9093_3_rxerrs_total Total number of receive errors
-# TYPE brokers_localhost_9093_3_rxerrs_total counter
-brokers_localhost_9093_3_rxerrs_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9093_3_rxidle_total Microseconds since last socket receive (or -1 if no receives yet for current connection).
-# TYPE brokers_localhost_9093_3_rxidle_total counter
-brokers_localhost_9093_3_rxidle_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9093_3_rxpartial_total Total number of partial MessageSets received. The broker may return partial responses if the full MessageSet could not fit in the remaining Fetch response size.
-# TYPE brokers_localhost_9093_3_rxpartial_total counter
-brokers_localhost_9093_3_rxpartial_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9093_3_stateage Time since last broker state change (microseconds)
-# TYPE brokers_localhost_9093_3_stateage gauge
-brokers_localhost_9093_3_stateage{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 9.057209e+06
-# HELP brokers_localhost_9093_3_tx_total Total number of requests sent
-# TYPE brokers_localhost_9093_3_tx_total counter
-brokers_localhost_9093_3_tx_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 310
-# HELP brokers_localhost_9093_3_txbytes_total Total number of bytes sent
-# TYPE brokers_localhost_9093_3_txbytes_total counter
-brokers_localhost_9093_3_txbytes_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 8.4301122e+07
-# HELP brokers_localhost_9093_3_txerrs_total Total number of transmission errors
-# TYPE brokers_localhost_9093_3_txerrs_total counter
-brokers_localhost_9093_3_txerrs_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9093_3_txidle_total Microseconds since last socket send (or -1 if no sends yet for current connection).
-# TYPE brokers_localhost_9093_3_txidle_total counter
-brokers_localhost_9093_3_txidle_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9093_3_txretries_total Total number of request retries
-# TYPE brokers_localhost_9093_3_txretries_total counter
-brokers_localhost_9093_3_txretries_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9093_3_waitresp_cnt Number of requests in-flight to broker awaiting response
-# TYPE brokers_localhost_9093_3_waitresp_cnt gauge
-brokers_localhost_9093_3_waitresp_cnt{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9093_3_waitresp_msg_cnt Number of messages in-flight to broker awaiting response
-# TYPE brokers_localhost_9093_3_waitresp_msg_cnt gauge
-brokers_localhost_9093_3_waitresp_msg_cnt{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9093_3_wakeups_total Broker thread poll loop wakeups
-# TYPE brokers_localhost_9093_3_wakeups_total counter
-brokers_localhost_9093_3_wakeups_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 607956
-# HELP brokers_localhost_9093_3_zbuf_grow_total Total number of decompression buffer size increases
-# TYPE brokers_localhost_9093_3_zbuf_grow_total counter
-brokers_localhost_9093_3_zbuf_grow_total{brokers_name="localhost:9093/3",brokers_nodeid="3",brokers_nodename="localhost:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9094_4_connects_total Number of connection attempts, including successful and failed, and name resolution failures.
-# TYPE brokers_localhost_9094_4_connects_total counter
-brokers_localhost_9094_4_connects_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9094_4_disconnects_total Number of disconnects (triggered by broker, network, load-balancer, etc.).
-# TYPE brokers_localhost_9094_4_disconnects_total counter
-brokers_localhost_9094_4_disconnects_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9094_4_outbuf_cnt Number of requests awaiting transmission to broker
-# TYPE brokers_localhost_9094_4_outbuf_cnt gauge
-brokers_localhost_9094_4_outbuf_cnt{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9094_4_outbuf_msg_cnt Number of messages awaiting transmission to broker
-# TYPE brokers_localhost_9094_4_outbuf_msg_cnt gauge
-brokers_localhost_9094_4_outbuf_msg_cnt{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9094_4_req_timeouts_total Total number of requests timed out
-# TYPE brokers_localhost_9094_4_req_timeouts_total counter
-brokers_localhost_9094_4_req_timeouts_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9094_4_rx_total Total number of responses received
-# TYPE brokers_localhost_9094_4_rx_total counter
-brokers_localhost_9094_4_rx_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 1
-# HELP brokers_localhost_9094_4_rxbytes_total Total number of bytes received
-# TYPE brokers_localhost_9094_4_rxbytes_total counter
-brokers_localhost_9094_4_rxbytes_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 272
-# HELP brokers_localhost_9094_4_rxcorriderrs_total Total number of unmatched correlation ids in response (typically for timed out requests)
-# TYPE brokers_localhost_9094_4_rxcorriderrs_total counter
-brokers_localhost_9094_4_rxcorriderrs_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9094_4_rxerrs_total Total number of receive errors
-# TYPE brokers_localhost_9094_4_rxerrs_total counter
-brokers_localhost_9094_4_rxerrs_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9094_4_rxidle_total Microseconds since last socket receive (or -1 if no receives yet for current connection).
-# TYPE brokers_localhost_9094_4_rxidle_total counter
-brokers_localhost_9094_4_rxidle_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9094_4_rxpartial_total Total number of partial MessageSets received. The broker may return partial responses if the full MessageSet could not fit in the remaining Fetch response size.
-# TYPE brokers_localhost_9094_4_rxpartial_total counter
-brokers_localhost_9094_4_rxpartial_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9094_4_stateage Time since last broker state change (microseconds)
-# TYPE brokers_localhost_9094_4_stateage gauge
-brokers_localhost_9094_4_stateage{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 9.057207e+06
-# HELP brokers_localhost_9094_4_tx_total Total number of requests sent
-# TYPE brokers_localhost_9094_4_tx_total counter
-brokers_localhost_9094_4_tx_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 1
-# HELP brokers_localhost_9094_4_txbytes_total Total number of bytes sent
-# TYPE brokers_localhost_9094_4_txbytes_total counter
-brokers_localhost_9094_4_txbytes_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 25
-# HELP brokers_localhost_9094_4_txerrs_total Total number of transmission errors
-# TYPE brokers_localhost_9094_4_txerrs_total counter
-brokers_localhost_9094_4_txerrs_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9094_4_txidle_total Microseconds since last socket send (or -1 if no sends yet for current connection).
-# TYPE brokers_localhost_9094_4_txidle_total counter
-brokers_localhost_9094_4_txidle_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9094_4_txretries_total Total number of request retries
-# TYPE brokers_localhost_9094_4_txretries_total counter
-brokers_localhost_9094_4_txretries_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9094_4_waitresp_cnt Number of requests in-flight to broker awaiting response
-# TYPE brokers_localhost_9094_4_waitresp_cnt gauge
-brokers_localhost_9094_4_waitresp_cnt{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9094_4_waitresp_msg_cnt Number of messages in-flight to broker awaiting response
-# TYPE brokers_localhost_9094_4_waitresp_msg_cnt gauge
-brokers_localhost_9094_4_waitresp_msg_cnt{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
-# HELP brokers_localhost_9094_4_wakeups_total Broker thread poll loop wakeups
-# TYPE brokers_localhost_9094_4_wakeups_total counter
-brokers_localhost_9094_4_wakeups_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 4
-# HELP brokers_localhost_9094_4_zbuf_grow_total Total number of decompression buffer size increases
-# TYPE brokers_localhost_9094_4_zbuf_grow_total counter
-brokers_localhost_9094_4_zbuf_grow_total{brokers_name="localhost:9094/4",brokers_nodeid="4",brokers_nodename="localhost:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9092_2_connects_total Number of connection attempts, including successful and failed, and name resolution failures.
+# TYPE brokers_example_com_9092_2_connects_total counter
+brokers_example_com_9092_2_connects_total{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9092_2_disconnects_total Number of disconnects (triggered by broker, network, load-balancer, etc.).
+# TYPE brokers_example_com_9092_2_disconnects_total counter
+brokers_example_com_9092_2_disconnects_total{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9092_2_outbuf_cnt Number of requests awaiting transmission to broker
+# TYPE brokers_example_com_9092_2_outbuf_cnt gauge
+brokers_example_com_9092_2_outbuf_cnt{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9092_2_outbuf_msg_cnt Number of messages awaiting transmission to broker
+# TYPE brokers_example_com_9092_2_outbuf_msg_cnt gauge
+brokers_example_com_9092_2_outbuf_msg_cnt{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9092_2_req_timeouts_total Total number of requests timed out
+# TYPE brokers_example_com_9092_2_req_timeouts_total counter
+brokers_example_com_9092_2_req_timeouts_total{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9092_2_rx_total Total number of responses received
+# TYPE brokers_example_com_9092_2_rx_total counter
+brokers_example_com_9092_2_rx_total{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 320
+# HELP brokers_example_com_9092_2_rxbytes_total Total number of bytes received
+# TYPE brokers_example_com_9092_2_rxbytes_total counter
+brokers_example_com_9092_2_rxbytes_total{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 15708
+# HELP brokers_example_com_9092_2_rxcorriderrs_total Total number of unmatched correlation ids in response (typically for timed out requests)
+# TYPE brokers_example_com_9092_2_rxcorriderrs_total counter
+brokers_example_com_9092_2_rxcorriderrs_total{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9092_2_rxerrs_total Total number of receive errors
+# TYPE brokers_example_com_9092_2_rxerrs_total counter
+brokers_example_com_9092_2_rxerrs_total{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9092_2_rxidle_total Microseconds since last socket receive (or -1 if no receives yet for current connection).
+# TYPE brokers_example_com_9092_2_rxidle_total counter
+brokers_example_com_9092_2_rxidle_total{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9092_2_rxpartial_total Total number of partial MessageSets received. The broker may return partial responses if the full MessageSet could not fit in the remaining Fetch response size.
+# TYPE brokers_example_com_9092_2_rxpartial_total counter
+brokers_example_com_9092_2_rxpartial_total{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9092_2_stateage Time since last broker state change (microseconds)
+# TYPE brokers_example_com_9092_2_stateage gauge
+brokers_example_com_9092_2_stateage{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 9.057234e+06
+# HELP brokers_example_com_9092_2_tx_total Total number of requests sent
+# TYPE brokers_example_com_9092_2_tx_total counter
+brokers_example_com_9092_2_tx_total{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 320
+# HELP brokers_example_com_9092_2_txbytes_total Total number of bytes sent
+# TYPE brokers_example_com_9092_2_txbytes_total counter
+brokers_example_com_9092_2_txbytes_total{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 8.4283332e+07
+# HELP brokers_example_com_9092_2_txerrs_total Total number of transmission errors
+# TYPE brokers_example_com_9092_2_txerrs_total counter
+brokers_example_com_9092_2_txerrs_total{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9092_2_txidle_total Microseconds since last socket send (or -1 if no sends yet for current connection).
+# TYPE brokers_example_com_9092_2_txidle_total counter
+brokers_example_com_9092_2_txidle_total{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9092_2_txretries_total Total number of request retries
+# TYPE brokers_example_com_9092_2_txretries_total counter
+brokers_example_com_9092_2_txretries_total{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9092_2_waitresp_cnt Number of requests in-flight to broker awaiting response
+# TYPE brokers_example_com_9092_2_waitresp_cnt gauge
+brokers_example_com_9092_2_waitresp_cnt{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9092_2_waitresp_msg_cnt Number of messages in-flight to broker awaiting response
+# TYPE brokers_example_com_9092_2_waitresp_msg_cnt gauge
+brokers_example_com_9092_2_waitresp_msg_cnt{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9092_2_wakeups_total Broker thread poll loop wakeups
+# TYPE brokers_example_com_9092_2_wakeups_total counter
+brokers_example_com_9092_2_wakeups_total{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 591067
+# HELP brokers_example_com_9092_2_zbuf_grow_total Total number of decompression buffer size increases
+# TYPE brokers_example_com_9092_2_zbuf_grow_total counter
+brokers_example_com_9092_2_zbuf_grow_total{brokers_name="example.com:9092/2",brokers_nodeid="2",brokers_nodename="example.com:9092",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9093_3_connects_total Number of connection attempts, including successful and failed, and name resolution failures.
+# TYPE brokers_example_com_9093_3_connects_total counter
+brokers_example_com_9093_3_connects_total{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9093_3_disconnects_total Number of disconnects (triggered by broker, network, load-balancer, etc.).
+# TYPE brokers_example_com_9093_3_disconnects_total counter
+brokers_example_com_9093_3_disconnects_total{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9093_3_outbuf_cnt Number of requests awaiting transmission to broker
+# TYPE brokers_example_com_9093_3_outbuf_cnt gauge
+brokers_example_com_9093_3_outbuf_cnt{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9093_3_outbuf_msg_cnt Number of messages awaiting transmission to broker
+# TYPE brokers_example_com_9093_3_outbuf_msg_cnt gauge
+brokers_example_com_9093_3_outbuf_msg_cnt{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9093_3_req_timeouts_total Total number of requests timed out
+# TYPE brokers_example_com_9093_3_req_timeouts_total counter
+brokers_example_com_9093_3_req_timeouts_total{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9093_3_rx_total Total number of responses received
+# TYPE brokers_example_com_9093_3_rx_total counter
+brokers_example_com_9093_3_rx_total{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 310
+# HELP brokers_example_com_9093_3_rxbytes_total Total number of bytes received
+# TYPE brokers_example_com_9093_3_rxbytes_total counter
+brokers_example_com_9093_3_rxbytes_total{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 15104
+# HELP brokers_example_com_9093_3_rxcorriderrs_total Total number of unmatched correlation ids in response (typically for timed out requests)
+# TYPE brokers_example_com_9093_3_rxcorriderrs_total counter
+brokers_example_com_9093_3_rxcorriderrs_total{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9093_3_rxerrs_total Total number of receive errors
+# TYPE brokers_example_com_9093_3_rxerrs_total counter
+brokers_example_com_9093_3_rxerrs_total{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9093_3_rxidle_total Microseconds since last socket receive (or -1 if no receives yet for current connection).
+# TYPE brokers_example_com_9093_3_rxidle_total counter
+brokers_example_com_9093_3_rxidle_total{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9093_3_rxpartial_total Total number of partial MessageSets received. The broker may return partial responses if the full MessageSet could not fit in the remaining Fetch response size.
+# TYPE brokers_example_com_9093_3_rxpartial_total counter
+brokers_example_com_9093_3_rxpartial_total{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9093_3_stateage Time since last broker state change (microseconds)
+# TYPE brokers_example_com_9093_3_stateage gauge
+brokers_example_com_9093_3_stateage{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 9.057209e+06
+# HELP brokers_example_com_9093_3_tx_total Total number of requests sent
+# TYPE brokers_example_com_9093_3_tx_total counter
+brokers_example_com_9093_3_tx_total{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 310
+# HELP brokers_example_com_9093_3_txbytes_total Total number of bytes sent
+# TYPE brokers_example_com_9093_3_txbytes_total counter
+brokers_example_com_9093_3_txbytes_total{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 8.4301122e+07
+# HELP brokers_example_com_9093_3_txerrs_total Total number of transmission errors
+# TYPE brokers_example_com_9093_3_txerrs_total counter
+brokers_example_com_9093_3_txerrs_total{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9093_3_txidle_total Microseconds since last socket send (or -1 if no sends yet for current connection).
+# TYPE brokers_example_com_9093_3_txidle_total counter
+brokers_example_com_9093_3_txidle_total{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9093_3_txretries_total Total number of request retries
+# TYPE brokers_example_com_9093_3_txretries_total counter
+brokers_example_com_9093_3_txretries_total{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9093_3_waitresp_cnt Number of requests in-flight to broker awaiting response
+# TYPE brokers_example_com_9093_3_waitresp_cnt gauge
+brokers_example_com_9093_3_waitresp_cnt{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9093_3_waitresp_msg_cnt Number of messages in-flight to broker awaiting response
+# TYPE brokers_example_com_9093_3_waitresp_msg_cnt gauge
+brokers_example_com_9093_3_waitresp_msg_cnt{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9093_3_wakeups_total Broker thread poll loop wakeups
+# TYPE brokers_example_com_9093_3_wakeups_total counter
+brokers_example_com_9093_3_wakeups_total{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 607956
+# HELP brokers_example_com_9093_3_zbuf_grow_total Total number of decompression buffer size increases
+# TYPE brokers_example_com_9093_3_zbuf_grow_total counter
+brokers_example_com_9093_3_zbuf_grow_total{brokers_name="example.com:9093/3",brokers_nodeid="3",brokers_nodename="example.com:9093",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9094_4_connects_total Number of connection attempts, including successful and failed, and name resolution failures.
+# TYPE brokers_example_com_9094_4_connects_total counter
+brokers_example_com_9094_4_connects_total{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9094_4_disconnects_total Number of disconnects (triggered by broker, network, load-balancer, etc.).
+# TYPE brokers_example_com_9094_4_disconnects_total counter
+brokers_example_com_9094_4_disconnects_total{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9094_4_outbuf_cnt Number of requests awaiting transmission to broker
+# TYPE brokers_example_com_9094_4_outbuf_cnt gauge
+brokers_example_com_9094_4_outbuf_cnt{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9094_4_outbuf_msg_cnt Number of messages awaiting transmission to broker
+# TYPE brokers_example_com_9094_4_outbuf_msg_cnt gauge
+brokers_example_com_9094_4_outbuf_msg_cnt{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9094_4_req_timeouts_total Total number of requests timed out
+# TYPE brokers_example_com_9094_4_req_timeouts_total counter
+brokers_example_com_9094_4_req_timeouts_total{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9094_4_rx_total Total number of responses received
+# TYPE brokers_example_com_9094_4_rx_total counter
+brokers_example_com_9094_4_rx_total{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 1
+# HELP brokers_example_com_9094_4_rxbytes_total Total number of bytes received
+# TYPE brokers_example_com_9094_4_rxbytes_total counter
+brokers_example_com_9094_4_rxbytes_total{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 272
+# HELP brokers_example_com_9094_4_rxcorriderrs_total Total number of unmatched correlation ids in response (typically for timed out requests)
+# TYPE brokers_example_com_9094_4_rxcorriderrs_total counter
+brokers_example_com_9094_4_rxcorriderrs_total{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9094_4_rxerrs_total Total number of receive errors
+# TYPE brokers_example_com_9094_4_rxerrs_total counter
+brokers_example_com_9094_4_rxerrs_total{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9094_4_rxidle_total Microseconds since last socket receive (or -1 if no receives yet for current connection).
+# TYPE brokers_example_com_9094_4_rxidle_total counter
+brokers_example_com_9094_4_rxidle_total{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9094_4_rxpartial_total Total number of partial MessageSets received. The broker may return partial responses if the full MessageSet could not fit in the remaining Fetch response size.
+# TYPE brokers_example_com_9094_4_rxpartial_total counter
+brokers_example_com_9094_4_rxpartial_total{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9094_4_stateage Time since last broker state change (microseconds)
+# TYPE brokers_example_com_9094_4_stateage gauge
+brokers_example_com_9094_4_stateage{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 9.057207e+06
+# HELP brokers_example_com_9094_4_tx_total Total number of requests sent
+# TYPE brokers_example_com_9094_4_tx_total counter
+brokers_example_com_9094_4_tx_total{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 1
+# HELP brokers_example_com_9094_4_txbytes_total Total number of bytes sent
+# TYPE brokers_example_com_9094_4_txbytes_total counter
+brokers_example_com_9094_4_txbytes_total{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 25
+# HELP brokers_example_com_9094_4_txerrs_total Total number of transmission errors
+# TYPE brokers_example_com_9094_4_txerrs_total counter
+brokers_example_com_9094_4_txerrs_total{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9094_4_txidle_total Microseconds since last socket send (or -1 if no sends yet for current connection).
+# TYPE brokers_example_com_9094_4_txidle_total counter
+brokers_example_com_9094_4_txidle_total{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9094_4_txretries_total Total number of request retries
+# TYPE brokers_example_com_9094_4_txretries_total counter
+brokers_example_com_9094_4_txretries_total{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9094_4_waitresp_cnt Number of requests in-flight to broker awaiting response
+# TYPE brokers_example_com_9094_4_waitresp_cnt gauge
+brokers_example_com_9094_4_waitresp_cnt{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9094_4_waitresp_msg_cnt Number of messages in-flight to broker awaiting response
+# TYPE brokers_example_com_9094_4_waitresp_msg_cnt gauge
+brokers_example_com_9094_4_waitresp_msg_cnt{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
+# HELP brokers_example_com_9094_4_wakeups_total Broker thread poll loop wakeups
+# TYPE brokers_example_com_9094_4_wakeups_total counter
+brokers_example_com_9094_4_wakeups_total{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 4
+# HELP brokers_example_com_9094_4_zbuf_grow_total Total number of decompression buffer size increases
+# TYPE brokers_example_com_9094_4_zbuf_grow_total counter
+brokers_example_com_9094_4_zbuf_grow_total{brokers_name="example.com:9094/4",brokers_nodeid="4",brokers_nodename="example.com:9094",brokers_source="learned",brokers_state="UP",client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 0
 # HELP metadata_cache_cnt Number of topics in the metadata cache.
 # TYPE metadata_cache_cnt gauge
 metadata_cache_cnt{client_id="rdkafka",name="rdkafka#producer-1",type="producer"} 1

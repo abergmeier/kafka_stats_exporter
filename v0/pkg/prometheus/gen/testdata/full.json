@@ -12,10 +12,10 @@
     "simple_cnt": 0,
     "metadata_cache_cnt": 1,
     "brokers": {
-      "localhost:9092/2": {
-        "name": "localhost:9092/2",
+      "example.com:9092/2": {
+        "name": "example.com:9092/2",
         "nodeid": 2,
-        "nodename": "localhost:9092",
+        "nodename": "example.com:9092",
         "source": "learned",
         "state": "UP",
         "stateage": 9057234,
@@ -91,10 +91,10 @@
           }
         }
       },
-      "localhost:9093/3": {
-        "name": "localhost:9093/3",
+      "example.com:9093/3": {
+        "name": "example.com:9093/3",
         "nodeid": 3,
-        "nodename": "localhost:9093",
+        "nodename": "example.com:9093",
         "source": "learned",
         "state": "UP",
         "stateage": 9057209,
@@ -170,10 +170,10 @@
           }
         }
       },
-      "localhost:9094/4": {
-        "name": "localhost:9094/4",
+      "example.com:9094/4": {
+        "name": "example.com:9094/4",
         "nodeid": 4,
-        "nodename": "localhost:9094",
+        "nodename": "example.com:9094",
         "source": "learned",
         "state": "UP",
         "stateage": 9057207,
