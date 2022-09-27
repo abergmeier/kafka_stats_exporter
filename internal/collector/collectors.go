@@ -5,6 +5,7 @@ import (
 	"reflect"
 
 	"github.com/abergmeier/kafka_stats_exporter/internal/label"
+	"github.com/abergmeier/kafka_stats_exporter/v0/pkg/prometheus/types"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
@@ -48,7 +49,7 @@ func (u *Collectors) Collect(c chan<- prometheus.Metric) {
 	}
 }
 
-func (u *Collectors) Fill(t reflect.Type, rlr *label.RecursiveReflector, parent string) {
+func (u *Collectors) Fill(t reflect.Type, rlr *label.RecursiveReflector, parent string, metricNameTransform types.MetricNameTransformer) {
 	u.T = t
 	u.Rlr = rlr
 	if u.T != u.Rlr.T {
@@ -59,7 +60,7 @@ func (u *Collectors) Fill(t reflect.Type, rlr *label.RecursiveReflector, parent 
 	for i, f := range fields {
 		tag := f.Tag.Get("kpromcol")
 		if tag != "" {
-			u.StaticCollectors = append(u.StaticCollectors, *makeGenerated(i, tag, f, parent, u.Rlr.Ln))
+			u.StaticCollectors = append(u.StaticCollectors, *makeGenerated(i, tag, f, parent, u.Rlr.Ln, metricNameTransform))
 			continue
 		}
 		tag = f.Tag.Get("kprommap")
@@ -81,9 +82,9 @@ func (u *Collectors) Fill(t reflect.Type, rlr *label.RecursiveReflector, parent 
 		if tag != "" {
 			cu := &Collectors{}
 			if parent == "" {
-				cu.Fill(f.Type, rlr.Fields[i], tag)
+				cu.Fill(f.Type, rlr.Fields[i], tag, metricNameTransform)
 			} else {
-				cu.Fill(f.Type, rlr.Fields[i], parent+"_"+tag)
+				cu.Fill(f.Type, rlr.Fields[i], parent+"_"+tag, metricNameTransform)
 			}
 			u.children = append(u.children, cu)
 			continue

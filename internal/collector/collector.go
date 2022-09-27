@@ -11,10 +11,6 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-var (
-	metricNameCleaner = strings.NewReplacer(":", "_", "/", "_", "-", "_")
-)
-
 type DynamicMap struct {
 	IndexInStruct int
 	StructParent  string
@@ -30,7 +26,7 @@ type GeneratedUpdator struct {
 	Last      int64
 }
 
-func makeGenerated(i int, tag string, f reflect.StructField, parent string, labelNames types.LabelNames) *GeneratedUpdator {
+func makeGenerated(i int, tag string, f reflect.StructField, parent string, labelNames types.LabelNames, metricNameTransform types.MetricNameTransformer) *GeneratedUpdator {
 	prom := strings.SplitN(tag, ",", 2)
 	help, err := url.QueryUnescape(prom[1])
 	if err != nil {
@@ -40,7 +36,7 @@ func makeGenerated(i int, tag string, f reflect.StructField, parent string, labe
 	switch prom[0] {
 	case "CounterVec":
 		// FIXME: This could result in overlapping prefixes
-		namePrefix := metricNameCleaner.Replace(parent)
+		namePrefix := metricNameTransform(parent)
 		if namePrefix != "" && !strings.HasSuffix(namePrefix, "_") {
 			namePrefix = namePrefix + "_"
 		}
@@ -57,7 +53,7 @@ func makeGenerated(i int, tag string, f reflect.StructField, parent string, labe
 		}
 	case "GaugeVec":
 		// FIXME: This could result in overlapping prefixes
-		namePrefix := metricNameCleaner.Replace(parent)
+		namePrefix := metricNameTransform(parent)
 		if namePrefix != "" && !strings.HasSuffix(namePrefix, "_") {
 			namePrefix = namePrefix + "_"
 		}
