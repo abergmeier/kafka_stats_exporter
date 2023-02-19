@@ -2,7 +2,6 @@ package gen
 
 import (
 	"reflect"
-	"strconv"
 
 	"github.com/abergmeier/kafka_stats_exporter/internal/assert"
 	"github.com/abergmeier/kafka_stats_exporter/internal/collector"
@@ -88,18 +87,12 @@ func updateMapped(d *collector.DynamicMap, rlr *label.RecursiveReflector, fv ref
 			delete(keysToDelete, rk)
 			continue
 		}
-		var keyString string
-		if rk.CanInt() {
-			keyString = strconv.FormatInt(rk.Int(), 10)
-		} else {
-			keyString = rk.String()
-		}
 		vt := iter.Value().Type()
 		cu := &collector.Collectors{}
 		if d.StructParent == "" {
-			cu.Fill(vt, rlr, d.FieldName+"_"+keyString, metricNameTransform)
+			cu.Fill(vt, rlr, d.FieldName, metricNameTransform)
 		} else {
-			cu.Fill(vt, rlr, d.StructParent+"_"+d.FieldName+"_"+keyString, metricNameTransform)
+			cu.Fill(vt, rlr, d.StructParent+"_"+d.FieldName, metricNameTransform)
 		}
 		// We need new map entry
 		d.Mapped[rk] = cu
