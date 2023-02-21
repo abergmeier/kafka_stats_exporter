@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"io"
 	"os"
-	"regexp"
 	"strings"
 	"testing"
 
@@ -17,7 +16,6 @@ var (
 	simple                                                     = simpleStats{}
 	full                                                       = typed.Stats{}
 	expectedFull, expectedSimple, expectedSimpleTransformation io.Reader
-	labelNameExp                                               = regexp.MustCompile("(^[^a-zA-Z_])|([^a-zA-Z0-9_]+)")
 )
 
 type simpleStats struct {
@@ -97,11 +95,7 @@ func TestNewRecursiveUpdaterFromTags(t *testing.T) {
 }
 
 func TestUpdateSimple(t *testing.T) {
-	col, upd := NewRecursiveMetricsFromTags(simpleStats{}, WithMetricNameTransform(
-		func(value string) (labelName string) {
-			return string(labelNameExp.ReplaceAllString(value, "_"))
-		},
-	))
+	col, upd := NewRecursiveMetricsFromTags(simpleStats{})
 	upd.Update(&simple, prometheus.Labels{})
 	err := testutil.CollectAndCompare(col, expectedSimple)
 	if err != nil {
@@ -114,10 +108,6 @@ func TestUpdateSimpleTransformation(t *testing.T) {
 		func(value string) (labelName string) {
 			return strings.ReplaceAll(value, "_", "")
 		},
-	), WithMetricNameTransform(
-		func(value string) (labelName string) {
-			return string(labelNameExp.ReplaceAllString(value, "_"))
-		},
 	))
 	upd.Update(&simple, prometheus.Labels{})
 	err := testutil.CollectAndCompare(col, expectedSimpleTransformation)
@@ -127,11 +117,7 @@ func TestUpdateSimpleTransformation(t *testing.T) {
 }
 
 func TestUpdateFull(t *testing.T) {
-	col, upd := NewRecursiveMetricsFromTags(&full, WithMetricNameTransform(
-		func(value string) (labelName string) {
-			return string(labelNameExp.ReplaceAllString(value, "_"))
-		},
-	))
+	col, upd := NewRecursiveMetricsFromTags(&full)
 	upd.Update(full, prometheus.Labels{})
 	//return
 	err := testutil.CollectAndCompare(col, expectedFull)
